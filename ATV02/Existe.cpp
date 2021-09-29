@@ -7,6 +7,7 @@ int main(){
     int achei = 0;
     int X, P;
 
+    cout << "Digite um valor a ser encontrado: ";
     cin >> X;
         
         for (int i = 0;i < 4; i++){
@@ -21,3 +22,6 @@ int main(){
         else{
             cout << "Numero encontrado" << endl;
         }
+
+return 0;
+}
