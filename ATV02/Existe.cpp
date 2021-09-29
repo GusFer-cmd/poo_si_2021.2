@@ -1,27 +1,53 @@
 #include <iostream>
 using namespace std;
 
+int set_existe( int x[], int tam, int num) {
+    int ex = 0;
+    int i;
+
+    for (i = 0; i < num; i++) {
+        if (x[i] == num) {
+            ex = 1;
+        }
+    }
+
+return ex;
+} 
+
+void set_array( int vetor[], int tam, int num) {
+
+    int i;
+    for (i = 0; i < tam; i++) {
+        cout << "Digite o elemento do vetor: " << i << endl;
+        cin >> vetor[i];
+    }
+} 
+
 int main(){
 
-    int Array[4] = {80, 2, -70, -8};
-    int achei = 0;
-    int X, P;
+    int tam = 0;
+    cout << "Digite o tamando da fila: \n";
+    cin >> tam; 
 
-    cout << "Digite um valor a ser encontrado: ";
-    cin >> X;
-        
-        for (int i = 0;i < 4; i++){
-            if (Array[i] == X){
-                achei = 1;
+    int stress[tam];
+    int prest = 0;
+    int i; 
+
+set_array(stress, tam, prest);
+
+    for ( i = 0; i < tam; i++) {
+        int num = 0;
+        cout << "Digite o valor que voce deseja verificar se existe na fila: ";
+        cin >> num; 
+
+        prest = set_existe( stress, tam, num);
+            if (prest == 1) {
+                cout << "Pessoa existente na fila \n" << endl; 
+            } 
+            else {
+                cout << "Pessoa nao existente na fila" << endl;
             }
-        }
+                break;
+    }
 
-        if (achei == 0){
-            cout << "Numero nao encontrado" << endl;
-        }
-        else{
-            cout << "Numero encontrado" << endl;
-        }
-
-return 0;
 }
