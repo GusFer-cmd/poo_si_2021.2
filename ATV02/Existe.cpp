@@ -49,5 +49,4 @@ set_array(stress, tam, prest);
             }
                 break;
     }
-
 }
