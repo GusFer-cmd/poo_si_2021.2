@@ -18,7 +18,7 @@ void set_array( int vetor[], int tam, int num) {
 
     int i;
     for (i = 0; i < tam; i++) {
-        cout << "Digite o elemento do vetor: " << i << endl;
+        cout << "Digite o elemento do vetor " << i << ":" << endl;
         cin >> vetor[i];
     }
 } 
