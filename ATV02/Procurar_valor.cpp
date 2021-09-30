@@ -18,10 +18,10 @@ int main(){
 	}
 	
 	if (encontrado == 0){
-		cout << "Numero nao encontrado" << endl;
+		cout << "Numero nao existente" << endl;
 	}
 	else{
-		cout << "Numero encontrado na posicao " << procurar_valor << endl;
+		cout << "Numero existente na posicao " << procurar_valor << endl;
 	}
 
 return 0;
