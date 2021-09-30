@@ -27,6 +27,5 @@ int main(){
 	        else {
 		        cout << "Numero " << num << " aparece " << contador << "x no vetor." << " Na posicao: " << procurar_valor << endl;
 	        }
-
 return 0;
 }
