@@ -33,4 +33,6 @@ int main()
 
     cout << "Valor:  \n" << numero << endl;
     cout << "Quantidade encontrada: \n" << qtd << endl; 
+
+return 0;
 }
