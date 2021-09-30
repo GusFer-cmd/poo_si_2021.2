@@ -14,7 +14,7 @@ int set_existe( int x[], int tam, int num) {
 return ex;
 } 
 
-void set_array( int vetor[], int tam, int num) {
+void set_vetX( int vetor[], int tam, int num) {
 
     int i;
     for (i = 0; i < tam; i++) {
@@ -33,7 +33,7 @@ int main(){
     int prest = 0;
     int i; 
 
-set_array(stress, tam, prest);
+set_vetX(stress, tam, prest);
 
     for ( i = 0; i < tam; i++) {
         int num = 0;
@@ -42,10 +42,10 @@ set_array(stress, tam, prest);
 
         prest = set_existe( stress, tam, num);
             if (prest == 1) {
-                cout << "Pessoa existente na fila \n" << endl; 
+                cout << "Valor existente na fila \n" << endl; 
             } 
             else {
-                cout << "Pessoa nao existente na fila" << endl;
+                cout << "Valor nao existente na fila" << endl;
             }
                 break;
     }

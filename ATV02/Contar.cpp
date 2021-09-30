@@ -8,12 +8,12 @@ int main()
     cout << "Digite a quantidade de elementos da fila: " << endl;
     cin >> tamanho;
 
-    int array[ tamanho ];
+    int vetX[ tamanho ];
 
     int i = 0;
     while ( i < tamanho){
-        cout <<  "Digite o elemento do vetor: " << i << ":" << endl;
-        cin >> array[ i ];
+        cout <<  "Digite o elemento do vetor " << i << ":" << endl;
+        cin >> vetX[ i ];
         i = i + 1;
     }
 
@@ -25,7 +25,7 @@ int main()
 
     i = 0;
     while ( i < tamanho){
-        if( numero == array[ i ] ){
+        if( numero == vetX[ i ] ){
             qtd = qtd + 1;
         }
         i = i + 1;

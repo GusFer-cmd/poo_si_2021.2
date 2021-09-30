@@ -11,18 +11,18 @@ int main(){
 	cin >> num;
 	
 	for (int i = 0; i < 4; i++) {
-		if (vetX[i] == num){
+		if (vetX[ i ] == num){
 			encontrado = 1;
 			procurar_valor = i;
 		}
 	}
 	
-	if (encontrado == 0){
-		cout << "Numero nao existente" << endl;
-	}
-	else{
-		cout << "Numero existente na posicao " << procurar_valor << endl;
-	}
+	        if (encontrado == 0){
+		        cout << "Numero nao existente" << endl;
+	        }
+	        else {
+		        cout << "Numero existente na posicao " << procurar_valor << endl;
+	        }
 
 return 0;
 }
