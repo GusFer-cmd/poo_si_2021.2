@@ -25,7 +25,7 @@ int main(){
 		        cout << "Numero nao existente" << endl;
 	        }
 	        else {
-		        cout << "Numero " << num << " aparece " << contador << "x no vetor." << " Na posicao: " << procurar_valor << endl;
+		        cout << "Numero " << num << " aparece " << contador << "x no vetor." << " E sua proxima posicao: " << procurar_valor << endl;
 	        }
 return 0;
 }
