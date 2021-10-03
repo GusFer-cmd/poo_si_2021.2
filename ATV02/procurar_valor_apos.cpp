@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main()
+{
 
     int vetX[] = {-2, 9, 89, -65, -2, 32};
 	int n = sizeof(vetX) / sizeof(vetX[ 0 ]);

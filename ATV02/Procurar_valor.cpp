@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int main(){
+int main()
+{
 	
 	int vetX[4] = {-2, 9, 89, -65};
 	int num, procurar_valor;

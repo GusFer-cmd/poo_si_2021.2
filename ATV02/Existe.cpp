@@ -23,7 +23,8 @@ void set_vetX( int vetor[], int tam, int num) {
     }
 } 
 
-int main(){
+int main()
+{
 
     int tam = 0;
     cout << "Digite o tamando da fila: \n";
