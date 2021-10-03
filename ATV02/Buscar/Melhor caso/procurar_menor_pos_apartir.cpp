@@ -10,7 +10,7 @@ int i, num, procurar_menor_pos_apos;
     
     for (i = 0; i < 5; i++) {
         cout << "Digite um valor: " << endl;
-        cin >>vetX[i];
+        cin >> vetX[i];
     }
 
 
