@@ -21,7 +21,7 @@ int main()
     cout << "Digite um valor que voce desejar verificar se existe na fila: " << endl;
     cin >> numero;
 
-    int qtd {};
+    int qtd = 0;
 
     i = 0;
     while ( i < tamanho){
