@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <iomanip>
 using namespace std;
 
 float calcular_stress_medioH( int vet[], int tam) {
@@ -42,6 +43,7 @@ int main()
     cout << "A media de stress dos homens: " << mediaH << endl; 
 
     mediaH = calcular_stress_medioM(vetX, 6);
+    cout << setprecision(2);
     cout << "A media de stress das mulheres: " << mediaM << endl; 
 
 }
