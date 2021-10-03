@@ -5,7 +5,7 @@ int main(){
 	
     int vetX[4] = {-2, 9, 89, -65};
 	int num, procurar_valor;
-    int encontrado = 0;
+    int encontrado {};
 	
     cout << "Digite um numero que voce deseja procurar: " << endl;
 	cin >> num;
