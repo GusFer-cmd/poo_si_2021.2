@@ -10,7 +10,7 @@ int main()
 
     int vetX[ tamanho ];
 
-    int i = 0;
+    int i {};
     while ( i < tamanho){
         cout <<  "Digite o elemento do vetor " << i << ":" << endl;
         cin >> vetX[ i ];
@@ -21,7 +21,7 @@ int main()
     cout << "Digite um valor que voce desejar verificar se existe na fila: " << endl;
     cin >> numero;
 
-    int qtd = 0;
+    int qtd {};
 
     i = 0;
     while ( i < tamanho){
