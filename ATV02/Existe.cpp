@@ -47,6 +47,7 @@ set_vetX(stress, tam, prest);
             else {
                 cout << "Valor nao existente na fila" << endl;
             }
-                break;
+            
+            break;
     }
 }
