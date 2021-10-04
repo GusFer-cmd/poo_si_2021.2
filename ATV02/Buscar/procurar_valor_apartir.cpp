@@ -23,7 +23,6 @@ int Pos = 0, encontrado = 0, contador = 0;
 	        	else {
 		        	cout << "Numero " << num << " aparece " << contador << "x no vetor." << " E sua proxima posicao: " << Pos << endl;
 	       		}
-
 }
 
 int main()
