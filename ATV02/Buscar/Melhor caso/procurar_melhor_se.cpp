@@ -1,26 +1,32 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int procurar_melhor_se ( int vet[], int tam) {
 
-int vetX[ 5 ];
-int procurar_melhor_se = vetX[ 0 ];
-int  i, pos = 0;
+int procura = vet[0], pos = 0;
+int i;
 
-    for (i=0; i<5; i++){
-        cout << "Digite um valor: " << endl;
-        cin >> vetX[i];
-    }
-
-        for (i = 0; i < 5; i++) {
-            if( vetX[ i ] < procurar_melhor_se && vetX[ i ] > 0 ) {
-                procurar_melhor_se = vetX[ i ];
-                pos = i;  
+    for (i = 0; i < tam; i++) {
+        if( vet[ i ] < procura && vet[ i ] > 0 ) {
+            procura = vet[ i ];
+            pos = i;  
             }
         }
 
         cout << " O homem menos extressado esta na posicao: " << pos << endl;
-                
+}
+
+int main()
+{
+
+int vetX[ 5 ], i;
+
+    for (i = 0; i < 5; i++) {
+        cout << "Digite um valor: " << endl;
+        cin >> vetX[ i ];
+    }
+
+    procurar_melhor_se ( vetX, 5 );
+
 return 0;
 }
