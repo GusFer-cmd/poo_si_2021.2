@@ -14,8 +14,8 @@ int Pos = 0, encontrado = 0, contador = 0;
 					encontrado = 1;
 					Pos = i;
             		contador++;
-        	}
-				}
+        		}
+			}
 	        
 				if (encontrado == 0) {
 		        	cout << "Numero nao existente" << endl;
@@ -28,13 +28,13 @@ int Pos = 0, encontrado = 0, contador = 0;
 int main()
 {
 
-int vetX[5];
+int vetX[ 5 ];
 int  i;
  
-		for (int i = 0; i < 5; i++) {
-			cout << "Digite um valor: " << endl;
-			cin >> vetX[ i ];
-		}
+	for (int i = 0; i < 5; i++) {
+		cout << "Digite um valor: " << endl;
+		cin >> vetX[ i ];
+	}
 	
 	procurar_valor_apartir( vetX, 5 );
 

@@ -25,7 +25,7 @@ int i, num, PV = 0, encontrado = 0;
 int main()
 {
 	
-	int vetX[ 4 ], i;
+int vetX[ 4 ], i;
  
 	for ( i = 0; i < 4; i++) {
         cout << "Digite um valor" << endl;

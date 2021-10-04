@@ -9,11 +9,11 @@ int i, num, ex = 0;
     cin >> num;
 
     for (i = 0; i < tam; i++) {
-        if ( num == vet[i] ) {
+        if ( num == vet[ i ] ) {
             ex = 1;
         }
     }
-            if( ex == 1){
+            if( ex == 1) {
                 cout << "Numero digitado existe na fila " << endl;
             }
             else {
@@ -24,14 +24,14 @@ int i, num, ex = 0;
 int main ()
 {
 
-    int vetX[5], i;
+int vetX[ 5 ], i;
 
-        for (i = 0; i < 5; i++) {
-			    cout << "Digite um valor: " << endl;
-			    cin >> vetX[ i ];
-	    }
+    for (i = 0; i < 5; i++) {
+		    cout << "Digite um valor: " << endl;
+			cin >> vetX[ i ];
+	}
         
         existe ( vetX, 5);
 
-    return 0;
+return 0;
 }
