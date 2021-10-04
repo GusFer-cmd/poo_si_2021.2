@@ -3,7 +3,7 @@ using namespace std;
 
 int procurar_melhor_se ( int vet[], int tam) {
 
-int procura = vet[0], pos = 0;
+int procura = vet[ 0 ], pos = 0;
 int i;
 
     for (i = 0; i < tam; i++) {

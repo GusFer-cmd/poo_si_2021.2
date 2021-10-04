@@ -27,10 +27,8 @@ int encontrado = 0, contador = 0;
 int main()
 {
 
-int vetX[5];
-int encontrado = 0, contador = 0;
-int i, num, procurar_menor_pos_apos;
-    
+int vetX[ 5 ], i;
+   
     for (i = 0; i < 5; i++) {
         cout << "Digite um valor: " << endl;
         cin >> vetX[i];
@@ -38,5 +36,5 @@ int i, num, procurar_menor_pos_apos;
 
     procurar_menor_pos_apartir( vetX, 5);
 
-    return 0;
+return 0;
 }

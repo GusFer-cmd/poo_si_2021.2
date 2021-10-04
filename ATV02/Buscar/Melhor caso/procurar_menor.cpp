@@ -16,11 +16,11 @@ int i, menor = vet[ 0 ];
 
 int main()
 {
-    int vetX[5], i;
+    int vetX[ 5 ], i;
 
     for (i = 0; i < 5; i++){
         cout << "Digite um valor: " << endl;
-        cin >> vetX[i]; 
+        cin >> vetX[ i ]; 
     }
 
     procurar_menor( vetX, 5 );          
