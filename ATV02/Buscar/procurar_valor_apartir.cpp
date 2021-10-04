@@ -31,10 +31,9 @@ int main()
 int vetX[5];
 int  i;
  
-	
 		for (int i = 0; i < 5; i++) {
 			cout << "Digite um valor: " << endl;
-			cin >> vetX[i];
+			cin >> vetX[ i ];
 		}
 	
 	procurar_valor_apartir( vetX, 5 );
