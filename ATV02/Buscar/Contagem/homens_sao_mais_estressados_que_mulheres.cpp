@@ -3,8 +3,9 @@
 using namespace std;
 
 float calcular_stress_medioH( int vet[], int tam) {
-    float somaH = 0; 
-    int i;
+
+float somaH = 0; 
+int i;
     
     for ( i = 0; i < tam; i++ ) {
         if ( vet[ i ] > 0) {
@@ -16,8 +17,9 @@ float calcular_stress_medioH( int vet[], int tam) {
 }
 
 float calcular_stress_medioM( int vet[], int tam) {
-    float somaM = 0;
-    int i;
+
+float somaM = 0;
+int i;
     
     for ( i = 0; i < tam; i++ ) {
         if ( vet[i] < 0) {
@@ -25,14 +27,15 @@ float calcular_stress_medioM( int vet[], int tam) {
         }   
     }
     
-    return somaM / tam;
+return somaM / tam;
 }
 
 int main()
 {
-    int vetX[ 6 ], i;
-    float mediaH; 
-    float mediaM; 
+
+int vetX[ 6 ], i;
+float mediaH; 
+float mediaM; 
 
     for ( i = 0; i < 6; i++ ) {
     cout << "Digite um valor: " << endl; 
@@ -46,4 +49,5 @@ int main()
     cout << setprecision(2);
     cout << "A media de stress das mulheres: " << mediaM << endl; 
 
+return 0;
 }
