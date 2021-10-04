@@ -1,38 +1,37 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
+int contar( int vet[], int tam ) {
 
-    int tamanho;
-    cout << "Digite a quantidade de elementos da fila: " << endl;
-    cin >> tamanho;
+int num;
+int qtd = 0, i = 0;
 
-    int vetX[ tamanho ];
-
-    int i {};
-    while ( i < tamanho){
-        cout <<  "Digite o elemento do vetor " << i << ":" << endl;
-        cin >> vetX[ i ];
-        i = i + 1;
-    }
-
-    int numero;
     cout << "Digite um valor que voce desejar verificar se existe na fila: " << endl;
-    cin >> numero;
+    cin >> num;
 
-    int qtd = 0;
-
-    i = 0;
-    while ( i < tamanho){
-        if( numero == vetX[ i ] ){
+    while ( i <= 5){
+        if( num == vet[ i ] ){
             qtd = qtd + 1;
         }
         i = i + 1;
     }
 
-    cout << "Valor:  \n" << numero << endl;
+    cout << "Valor:  \n" << num << endl;
     cout << "Quantidade encontrada: \n" << qtd << endl; 
+
+}
+
+int main()
+{
+    
+    int vetX[ 5 ], i;
+    
+    for (i = 0; i < 5; i++) {
+			cout << "Digite um valor: " << endl;
+			cin >> vetX[ i ];
+		}
+
+    contar( vetX, 5);
 
 return 0;
 }
