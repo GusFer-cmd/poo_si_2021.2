@@ -21,7 +21,7 @@ int vetX[ 4 ], i;
 
     for ( i = 0; i < 4; i++) {
         cout << "Digite um valor" << endl;
-        cin >> vetX[i];
+        cin >> vetX[ i ];
     }
 
     procurar_menor_pos( vetX, 4 );
