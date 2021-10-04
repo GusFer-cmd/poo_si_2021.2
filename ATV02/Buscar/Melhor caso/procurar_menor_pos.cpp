@@ -15,7 +15,6 @@ int menor = vet[ 0 ];
         cout << "O menor valor encontrado: " << menor << " e sua posicao: " << posM << endl;
 }
 
-
 int main(){
 
     int vetX[ 4 ], i;
