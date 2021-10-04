@@ -1,25 +1,31 @@
 #include <iostream>
-using namespace std;
+using namespace std; 
 
-int main()
-{
-
-int vetX[4];
-int menor = vetX[0], i, posM = 0;
-
-    for ( i = 0; i < 4; i++) {
-    cout << "Digite um valor" << endl;
-    cin >> vetX[i];
-    }
-
-        for ( i = 0; i < 4; i++) {
-            if ( vetX[i] < menor){
-                menor = vetX[i];
+int procurar_menor_pos ( int vet[], int tam ) {
+int i, posM = 0;
+int menor = vet[ 0 ];
+        
+        for ( i = 0; i < tam; i++) {
+            if ( vet[ i ] < menor){
+                menor = vet[ i ];
                 posM = i;
             }
         }
+    
+        cout << "O menor valor encontrado: " << menor << " e sua posicao: " << posM << endl;
+}
 
-    cout << "O menor valor encontrado: " << menor << " e sua posicao: " << posM << endl;
 
-return 0;
+int main(){
+
+    int vetX[ 4 ], i;
+
+    for ( i = 0; i < 4; i++) {
+        cout << "Digite um valor" << endl;
+        cin >> vetX[i];
+    }
+
+    procurar_menor_pos( vetX, 4 );
+
+    return 0;
 }
