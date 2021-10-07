@@ -5,9 +5,10 @@ int sortear(int vet[], int tam) {
 
 int i; 
 
+    cout << "Sorteio: ";
     for (i = 0; i < tam; i++) {
         srand(vet[ i ]);
-        cout << "Sorteio: " << rand()%tam << endl;
+        cout << rand()%tam << " ";
     }
 }
 
