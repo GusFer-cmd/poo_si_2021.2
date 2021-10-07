@@ -8,7 +8,7 @@ int i;
     cout << "Sorteio: ";
     for (i = 0; i < tam; i++) {
         srand(vet[ i ]);
-        cout << rand()%tam << " ";
+        cout << rand()%tam << "  ";
     }
 }
 
