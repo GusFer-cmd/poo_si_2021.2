@@ -27,7 +27,7 @@ int i;
 int main()
 {
 
-int vetX[ 3 ] , i;
+int vetX[ 3 ], i;
 
     for(i = 0; i < 3; i++) {
         cout << "Digite um valor: " << endl;
