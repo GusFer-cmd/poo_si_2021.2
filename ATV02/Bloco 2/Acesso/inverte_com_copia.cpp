@@ -5,9 +5,10 @@ int inverter_com_copia( int vet[], int tam) {
 
 int i, j, vetI[ i ];
 
+        cout << "O vetor invertido: ";
         for (i = 0, j = 5; i < 6 && j >= 0; i++, j--) {
             vetI[ i ] = vet[ j ];
-            cout << "O vetor invertido: " << vetI[ i ] << endl;
+            cout << vetI[ i ] << "  ";
         }
 } 
 

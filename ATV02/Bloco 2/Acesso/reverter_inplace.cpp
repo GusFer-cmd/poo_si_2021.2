@@ -11,9 +11,10 @@ int j = tam-1, i, aux;
         vet[ j ] = aux;
         j--;
     }
-
+        cout << "Vetor invertido: ";
+        
         for ( i = 0; i < tam; i++) {
-            cout << "Vetor invertido: " << vet[ i ] << endl;
+            cout << vet[ i ] << "  ";
         }
 
 } 
