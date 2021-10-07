@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <cstdlib>
 using namespace std;
 
 int embaralhar( int vet[], int tam) {
