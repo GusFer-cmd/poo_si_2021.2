@@ -1,15 +1,17 @@
-#include <iostream>
+#include <iostream> 
 using namespace std;
 
-int sortear(int vet[], int tam) {
+int embaralhar( int vet[], int tam) {
 
-int i; 
+int i, j, aux;
 
     for (i = 0; i < tam; i++) {
-        srand(vet[ i ]);
-        cout << "Sorteio: " << rand()%tam << endl;
+        j = rand() % tam;
+        aux = vet[ i ];
+        vet[ i ] = vet [ j ];
+        vet[ j ] = aux;
     }
-}
+} 
 
 int main() 
 {
@@ -21,7 +23,7 @@ int vetX[ 6 ], i;
         cin >> vetX[ i ];
     }
 
-    sortear(vetX, 6);
+    embaralhar(vetX, 6);
 
 return 0;
 }
