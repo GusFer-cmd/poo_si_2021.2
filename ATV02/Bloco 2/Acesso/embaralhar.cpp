@@ -5,11 +5,14 @@ int embaralhar( int vet[], int tam) {
 
 int i, j, aux;
 
+    cout << "O vetor embaralhado: ";
+
     for (i = 0; i < tam; i++) {
         j = rand() % tam;
         aux = vet[ i ];
         vet[ i ] = vet [ j ];
         vet[ j ] = aux;
+        cout << aux << "  ";
     }
 } 
 
