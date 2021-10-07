@@ -12,7 +12,7 @@ int i, j, aux;
         aux = vet[ i ];
         vet[ i ] = vet [ j ];
         vet[ j ] = aux;
-        cout << aux << "  ";
+        cout << vet[ j ] << "  ";
     }
 } 
 
