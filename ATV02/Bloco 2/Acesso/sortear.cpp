@@ -1,24 +1,33 @@
-#include <iostream>
+#include <iostream> 
 #include <cstdlib>
 using namespace std;
 
-int sortear(int vet[], int tam) {
+int sorteio( int vet[], int tam) {
 
-int i; 
+int i, j, aux;
 
     cout << "Sorteio: ";
+
     for (i = 0; i < tam; i++) {
-        srand(vet[ i ]);
+        j = rand() % tam;
+        aux = vet[ i ];
+        vet[ i ] = vet [ j ];
+        vet[ j ] = aux;
     }
-    cout << rand() % tam << "  ";
-}
+        cout << vet[ j ] << "  ";
+} 
 
 int main() 
 {
 
-int vetX[ 6 ] = { 68, 23, -80, -2, 5, -10};
+int vetX[ 6 ], i;
 
-    sortear(vetX, 6);
+    for (i = 0; i < 6; i++) {
+        cout << "Digite um valor: " << endl;
+        cin >> vetX[ i ];
+    }
+
+    sorteio(vetX, 6);
 
 return 0;
 }
