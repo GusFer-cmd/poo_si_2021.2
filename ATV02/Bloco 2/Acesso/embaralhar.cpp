@@ -14,7 +14,6 @@ int i, aux;
         for (i = 0; i < tam; i++) {
             cout << vet[ i ] << "  ";
         }
-
 }
   
 int main() 
