@@ -4,8 +4,19 @@ using namespace std;
 
 int embaralhar( int vet[], int tam) {
 
-} 
+int i, aux;
 
+    for (i = 0; i < 3; i++) {
+        aux = vet[ i ];
+        vet[ i ] = vet[5 - i];
+        vet[ 5 - 1 ] = aux;
+    }
+        for (i = 0; i < tam; i++) {
+            cout << vet[ i ] << "  ";
+        }
+
+}
+  
 int main() 
 {
 
