@@ -9,7 +9,7 @@ int i, aux;
     for (i = 0; i < 3; i++) {
         aux = vet[ i ];
         vet[ i ] = vet[5 - i];
-        vet[ 5 - 1 ] = aux;
+        vet[ 5 - i ] = aux;
     }
         for (i = 0; i < tam; i++) {
             cout << vet[ i ] << "  ";
