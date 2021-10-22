@@ -35,7 +35,7 @@ struct Moto {
 
     bool inserirPessoa(Pessoa* pessoa) {
         if(this->pessoa != nullptr) {
-            cout << "Ja tem uma crianca na motoca.\n";
+            cout << "Moto ocupada.\n";
             return false;
         }
         this->pessoa = pessoa;
@@ -57,21 +57,22 @@ struct Moto {
             this->tempo += tempo;
             cout << "Tempo adicionado com sucesso!\n";
         }   
-        
         cout << this->tempo << " minutos\n"; 
     }
 
     void drive(int tempo) {
         if(this->tempo > 0) {
             cout << "O tempo ainda nao acabou, continue a dirigir!\n";
+        } else {
+            cout << "O passeio acabou!\n";
         }
     }
 
     void honk(){
-        if (this->power == 0) {
+        if (this->power == 1) {
             cout << "Pem\n";
         } else {
-            cout << "Peem\n";
+            cout << "Peeeem\n";
         }
     }
 };
@@ -86,10 +87,11 @@ int main() {
     cout << "A potencia: " << moto.power << endl;
     cout << "O tempo: " << moto.tempo << endl;
 
-    moto.drive(4);
+    moto.drive(5);
     moto.honk();
     moto.buy(1);
     moto.inserirPessoa(&pessoa2);
+    moto.removerPessoa();
 
 return 0;
 }
