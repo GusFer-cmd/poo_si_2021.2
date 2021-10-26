@@ -6,7 +6,7 @@ struct Pessoa {
     string nome{""};
     int idade{0};
 
-    Pessoa( string nome, int idade) : 
+    Pessoa( string nome = "", int idade = 0) : 
         nome{nome}, idade{idade} {
     }         
 
