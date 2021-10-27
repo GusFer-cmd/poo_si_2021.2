@@ -43,10 +43,6 @@ struct Moto {
     }
 
     Pessoa* removerPessoa() {
-        if(this->pessoa == nullptr) {
-            cout << "Nao tem crianca.\n";
-            return nullptr;
-        }
         return exchange(this->pessoa, nullptr);
     }
 
@@ -61,7 +57,7 @@ struct Moto {
     }
 
     void drive(int tempo) {
-        if(this->tempo > 0) {
+        if(this->tempo > 0 && this->pessoa != nullptr) {
             cout << "O tempo ainda nao acabou, continue a dirigir!\n";
         } else {
             cout << "O passeio acabou!\n";
@@ -69,11 +65,11 @@ struct Moto {
     }
 
     void honk(){
-        if (this->power == 1) {
-            cout << "Pem\n";
-        } else {
-            cout << "Peeeem\n";
+        cout << "P";
+        for (int i = 0; i < this->power; i++) {
+            cout << "e";
         }
+        cout << "m\n";
     }
 };
 
