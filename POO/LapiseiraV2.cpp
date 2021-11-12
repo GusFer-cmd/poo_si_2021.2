@@ -35,7 +35,7 @@ public:
         this->tambor.push_back(grafite);
     }
 
-    bool chamarGrafite(int indice) {
+    bool colocarGrafite(int indice) {
         if (indice < 0 || indice >= this->bico.size()) {
             cout << "Grafite inexistente\n";
             return false;
@@ -88,11 +88,6 @@ public:
 };
 
 int main () {
-    Lapiseira lapiseira(3);
-    lapiseira.adicionaGrafite(make_shared<Grafite>(0.5, 10, "Duro"));
-
-
-
 
     return 0;
 }
