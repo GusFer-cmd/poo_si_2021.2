@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include <algorithm>
 #include <memory>
 
 using namespace std;
@@ -36,10 +35,10 @@ public:
 
     bool chamarBrinquedo(int indice) {
         if (indice < 0 || indice >= this->brincando.size()) {
-            cout << "Brinquedo inexistente\n";
+            cout << "Brinquedo fechado\n";
             return false;
         }
-        if (this->brincando[indice] == nullptr) {
+        if (this->brincando[indice] != nullptr) {
             cout << "Brinquedo ocupado\n";
                 return false;
         }
@@ -54,7 +53,7 @@ public:
 
     bool finalizarRodada(int indice) {
         if (indice < 0 || indice >= this->brincando.size()) {
-            cout << "Brinquedo inexistente\n";
+            cout << "Brinquedo fechado\n";
             return false;
         }
         if (this->brincando[indice] == nullptr) {
