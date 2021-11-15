@@ -14,6 +14,22 @@ class Kid {
         nome{nome}, idade{idade} {    
     }
 
+    int getIdade(){
+        return this->idade;
+    }
+
+    string getNome(){
+        return this->nome;
+    }
+
+    void setIdade(int idade){
+        this->idade;
+    }
+
+    void setNome(string nome){
+        this->nome;
+    }
+
     friend ostream& operator<<(ostream& os, const Kid& kid) {
         os << "Nome: " << kid.nome << ", "; 
         os << "Idade: " << kid.idade << " anos\n";
@@ -43,7 +59,7 @@ public:
                 return false;
         }
         if (this->esperando.empty()) {
-            cout << "Sem criancas\n";
+            cout << "Sem criancas na fila de espera\n";
             return false;
         }
         this->brincando[indice] = this->esperando.front();
