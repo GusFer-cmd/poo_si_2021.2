@@ -48,7 +48,7 @@ public:
         this->fila.push_back(cliente);
     }
     
-    bool chamarCadeira(int indice) {
+    bool reservarCadeira(int indice) {
         if (indice < 0 || indice >= this->cadeiras.size()) {
             cout << "Cinema fechado\n";
             return false;
@@ -79,6 +79,16 @@ public:
         return true;
     }    
 
+    bool cancelar(string indice) {
+        for (int i = 0; i < this->cadeiras.size(); i++) {
+            if (this->cadeiras[i] != nullptr && this->cadeiras[i]->getId() == indice) {
+                this->cadeiras[i] = nullptr;
+                return true;
+            }
+        }
+        return false;
+    }
+
     friend ostream& operator<<(ostream& os, const Sala& s) {
         os << "Cadeiras: | ";
         for (int i = 0; i < (int) s.cadeiras.size(); i++) {
@@ -107,14 +117,16 @@ int main () {
     sala.entrar(make_shared<Cliente>("Lucas", "789"));
     sala.entrar(make_shared<Cliente>("Gustavo", "101112"));
 
-    sala.chamarCadeira(0);
-    sala.chamarCadeira(1);
-    sala.chamarCadeira(2);
-    sala.chamarCadeira(0);
+    sala.reservarCadeira(0);
+    sala.reservarCadeira(1);
+    sala.reservarCadeira(2);
+    sala.reservarCadeira(0);
+
+    sala.cancelar("Pedro");
 
     sala.finalizarSessao(0);
-    sala.finalizarSessao(1);
-
+    
+    
     cout << sala << endl;
 
     return 0;
