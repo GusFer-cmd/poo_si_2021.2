@@ -1,6 +1,5 @@
 #include <iostream>
 #include <map>
-#include <list>
 #include <vector>
 #include <memory>
 
@@ -73,7 +72,7 @@ class ChecandoConta : public Conta {
         this->type = "CC";
     }
     
-    void monthupdate(){
+    virtual void monthupdate(){
         this->balance -= 20;
     }
 };
@@ -119,8 +118,8 @@ class Cliente {
 
         friend ostream& operator<<(ostream& os, Cliente& cliente) {
             os << cliente.clientId << " [ " << endl;
-            for(int i = 0; i < (int)cliente.contas.size(); i++){
-                os << cliente.contas[i]->getClientId() << ((i+1 < (int)cliente.contas.size()) ? ", " : "");
+            for (int i = 0; i < (int)cliente.contas.size(); i++){
+                os << cliente.contas[i]->getClientId() << ((i+1 < (int)cliente.contas.size()) ? "," : "");
             }
             os << " ]" << endl;
             return os;
