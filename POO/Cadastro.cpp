@@ -46,19 +46,19 @@ class Conta {
             other->deposito(valor);
         }
 
-        int getId() {
+        virtual int getId() {
             return this->id;
         }
 
-        float getBalance() {
+        virtual float getBalance() {
             return this->balance;
         }
 
-        string getClientId() {
+        virtual string getClientId() {
             return this->clientId;
         }
 
-        string getType() {
+        virtual string getType() {
             return this->type;
         }
 
@@ -68,6 +68,7 @@ class Conta {
 };
 
 class ChecandoConta : public Conta {
+    public:
     ChecandoConta(int id, string clientId) : Conta(id, clientId) {
         this->type = "CC";
     }
@@ -78,6 +79,7 @@ class ChecandoConta : public Conta {
 };
 
 class SalvandoConta : public Conta {
+    public:
     SalvandoConta(int id, string clientId) : Conta{id, clientId} {
     }
     
