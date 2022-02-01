@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 int inverter_com_copia( int vet[], int tam) {
@@ -15,7 +16,7 @@ int i, j, vetI[ i ];
 int main()
 {
 
-int vetX[ 6 ], vetI[ 6 ], i, j;
+int vetX[ 6 ], i;
 
     for (i = 0; i < 6; i++) {
         cout << "Digite um valor: " << endl;
