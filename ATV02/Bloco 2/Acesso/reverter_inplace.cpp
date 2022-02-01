@@ -1,10 +1,10 @@
-# include <iostream>
+#include <iostream>
 
 using namespace std;
 
 int reverter_inplace( int vet[], int tam ) {
 
-int j = tam-1, i, aux;
+int j = tam - 1, i, aux;
 
     for ( i = 0; i < tam/2; i++ ) {
         aux = vet[ i ];
