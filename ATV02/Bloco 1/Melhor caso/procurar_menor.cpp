@@ -7,10 +7,10 @@ int procurar_menor ( int vet[], int tam) {
 int i, menor = vet[ 0 ];
 
     for (i = 0; i < 5; i++){
-              if ( vet[ i ] < menor ){
-                  menor = vet[ i ];
-              }
-          }
+        if ( vet[ i ] < menor ){
+            menor = vet[ i ];
+        }
+    }
 
     cout << "Menor valor encontrado: " << menor << endl;
 }
