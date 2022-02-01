@@ -9,7 +9,7 @@ int menor = vet[ 0 ];
         for ( i = 0; i < tam; i++) {
             if ( vet[ i ] < menor){
                 menor = vet[ i ];
-                posM = i;
+                posM = i + 1;
             }
         }
     
