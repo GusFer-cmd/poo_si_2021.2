@@ -13,7 +13,7 @@ struct Pessoa {
         nome{nome}, idade{idade} {
     }         
 
-    //Friend para print (Operador de saída). Não é um metado da classe.
+    //Friend para print (Operador de saída). Não é um metodo da classe.
     friend ostream& operator<<(ostream& os, const Pessoa& pessoa) {
         os << "Nome: " << pessoa.nome << ", ";
         os << "Idade: " << pessoa.idade << " anos\n";    
