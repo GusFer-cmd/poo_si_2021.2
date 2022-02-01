@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 int clonar(int vet[], int tam, int vetClone[]) {

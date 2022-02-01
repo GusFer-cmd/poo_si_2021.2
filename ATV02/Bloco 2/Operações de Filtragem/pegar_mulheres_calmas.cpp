@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 int pegar_mulheres_calmas ( int vet[], int tam) {
