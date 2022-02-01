@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 void ordenar( int vet[], int tam) {
@@ -6,9 +7,9 @@ void ordenar( int vet[], int tam) {
 int i;
 
     for(i = 0; i < tam - 1; i++) {
-        if(vet[ i ] > vet[ i+1 ] ) {
-            int aux = vet[ i+1 ];
-            vet[ i+1 ] = vet[ i ];
+        if(vet[ i ] > vet[ i + 1 ] ) {
+            int aux = vet[ i + 1 ];
+            vet[ i + 1 ] = vet[ i ];
             vet[ i ] = aux;
         }
     }  
