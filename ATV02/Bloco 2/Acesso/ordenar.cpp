@@ -8,7 +8,7 @@ int i;
 
     for(i = 0; i < tam - 1; i++) {
         if(vet[ i ] > vet[ i + 1 ] ) {
-            int aux = vet[ i + 1 ];
+            int aux = vet[ i + 1 ]; //Auxiliar recebe o valor do vetor[ i + 1 ], (guardando o elemento.)
             vet[ i + 1 ] = vet[ i ];
             vet[ i ] = aux;
         }
