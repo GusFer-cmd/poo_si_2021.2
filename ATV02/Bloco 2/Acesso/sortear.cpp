@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int sorteio(const vector<int>& v) {
+int sorteio(const vector<int>&v) {
     int tam = v.size();
     int s = rand() % tam;
 
