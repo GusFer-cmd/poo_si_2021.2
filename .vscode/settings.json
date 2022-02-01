@@ -5,6 +5,7 @@
         "sstream": "cpp",
         "string": "cpp",
         "tuple": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "ostream": "cpp"
     }
 }

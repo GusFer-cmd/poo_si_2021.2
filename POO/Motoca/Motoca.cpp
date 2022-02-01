@@ -39,11 +39,13 @@ struct Moto {
             cout << "Moto ocupada.\n";
             return false;
         }
+        cout << "Crianca subiu na motoca" << endl;
         this->pessoa = pessoa;
         return true;
     }
 
     Pessoa* removerPessoa() {
+        cout << "Crianca foi removida da motoca" << endl;
         return exchange(this->pessoa, nullptr);
     }
 
@@ -87,8 +89,8 @@ int main() {
     moto.drive(5);
     moto.honk();
     moto.buy(1);
-    moto.inserirPessoa(&pessoa2);
     moto.removerPessoa();
+    moto.inserirPessoa(&pessoa2);
 
 return 0;
 }
