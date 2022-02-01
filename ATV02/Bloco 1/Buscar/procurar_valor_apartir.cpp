@@ -12,7 +12,7 @@ int Pos = 0, encontrado = 0, contador = 0;
 			for (int i = 0; i < tam; i++) {
 				if (vet[ i ] == num) {
 					encontrado = 1;
-					Pos = i;
+					Pos = i + 1;
             		contador++;
         		}
 			}

@@ -3,7 +3,7 @@ using namespace std;
 
 int procurar_valor( int vet[], int tam) {
 
-int i, num, PV = 0, encontrado = 0;
+int i, num, Pos = 0, encontrado = 0;
 
     cout << "Digite um numero que voce deseja procurar: " << endl;
 	cin >> num;
@@ -11,14 +11,14 @@ int i, num, PV = 0, encontrado = 0;
     for (int i = 0; i < tam; i++) {
 		if (vet[ i ] == num) {
 			encontrado = 1;
-			PV = i;
+			Pos = i + 1;
 		}
 	}
 			if (encontrado == 0) {
 		        cout << "Numero nao existente" << endl;
 	        }
 	        else {
-		        cout << "Numero existente na posicao " << procurar_valor << endl;
+		        cout << "Numero existente na posicao " << Pos << endl;
 	        }
 }
 
