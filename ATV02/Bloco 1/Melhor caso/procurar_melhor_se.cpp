@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 int procurar_melhor_se ( int vet[], int tam) {
@@ -9,7 +10,7 @@ int i;
     for (i = 0; i < tam; i++) {
         if( vet[ i ] < procura && vet[ i ] > 0 ) {
             procura = vet[ i ];
-            pos = i;  
+            pos = i + 1;  
             }
         }
 

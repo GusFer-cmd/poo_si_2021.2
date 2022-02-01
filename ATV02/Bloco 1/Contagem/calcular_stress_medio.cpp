@@ -1,4 +1,5 @@
 #include <iostream> 
+
 using namespace std;
 
 float calcular_stress_medio( int vet[], int tam) {
