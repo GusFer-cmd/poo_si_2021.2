@@ -13,7 +13,7 @@ int encontrado = 0, contador = 0;
         for (i = 0; i < tam; i++) {
             if ( vet[ i ] == num) {
                 encontrado = 1;
-                PMPA = i;
+                PMPA = i + 2;
                 contador++;
             }
         }        
