@@ -3,64 +3,75 @@
 
 using namespace std;
 
+//Struct então tudo é público
 struct Pessoa {
-    string nome{""};
-    int idade{0};
+    string nome; //Inicializando atributos
+    int idade;
 
+    //Construtor
     Pessoa( string nome = "", int idade = 0) : 
         nome{nome}, idade{idade} {
     }         
 
+    //Friend para print (Operador de saída). Não é um metado da classe.
     friend ostream& operator<<(ostream& os, const Pessoa& pessoa) {
         os << "Nome: " << pessoa.nome << ", ";
         os << "Idade: " << pessoa.idade << " anos\n";    
     }
 }; 
 
+//Função para print a criança 
 void mostrar( Pessoa& pessoa ) {
         cout << pessoa.nome << " tem " << pessoa.idade << " anos " << endl; 
     }
 
+//Nova classe
 struct Moto {
-    int power{1};
+    int power{1}; //Inicializando variáveis
     int tempo{0};
-    Pessoa* pessoa;
-    Moto(int power, int tempo, Pessoa* pessoa = nullptr) : 
+    Pessoa* pessoa; //Para não ter copia. (Troca objeto).
+    Moto(int power, int tempo, Pessoa* pessoa = nullptr) :  //Construtor da moto
         power{power}, tempo{tempo}, pessoa{pessoa} {
     }      
 
-    friend ostream& operator<<(ostream& os, const Moto& moto) {
+    friend ostream& operator<<(ostream& os, const Moto& moto) { //Friend da moto
         os << "Potencia: " << moto.power << " \n";
         os << "Tempo: " << moto.tempo << " anos\n";    
     }
 
     bool inserirPessoa(Pessoa* pessoa) {
-        if(this->pessoa != nullptr) {
+        if (this->pessoa != nullptr) {  //Usa "->" ponteiro
             cout << "Moto ocupada.\n";
             return false;
-        }
+        } else {
         cout << "Crianca subiu na motoca" << endl;
-        this->pessoa = pessoa;
+        this->pessoa = pessoa; //Atribuição
         return true;
+        }
     }
 
     Pessoa* removerPessoa() {
+        if (this->pessoa == nullptr) {
+            cout << "Moto disponível\n";
+            return nullptr;
+        } else {
         cout << "Crianca foi removida da motoca" << endl;
-        return exchange(this->pessoa, nullptr);
+        return exchange(this->pessoa, nullptr); //Replace, pra não perder o obj
+        }
     }
 
     void buy(int tempo) {
         if(this->tempo == 0) {
             cout << "Tempo acabou. Compre mais tempo!\n";
         } else {
-            this->tempo += tempo;
+            this->tempo += tempo; //Incrementa
             cout << "Tempo adicionado com sucesso!\n";
         }   
         cout << this->tempo << " minutos\n"; 
     }
 
     void drive(int tempo) {
-        if(this->tempo > 0 && this->pessoa != nullptr) {
+        if(this->tempo > 0 && this->pessoa != nullptr) { 
             cout << "O tempo ainda nao acabou, continue a dirigir!\n";
         } else {
             cout << "O passeio acabou!\n";
@@ -91,6 +102,8 @@ int main() {
     moto.buy(1);
     moto.removerPessoa();
     moto.inserirPessoa(&pessoa2);
+
+    mostrar(pessoa2);
 
 return 0;
 }
