@@ -1,33 +1,27 @@
 #include <iostream> 
 #include <cstdlib>
+#include <vector>
+
 using namespace std;
 
-int sorteio( int vet[], int tam) {
+int sorteio(const vector<int>& v) {
+    int tam = v.size();
+    int s = rand() % tam;
 
-int i, j, aux;
+    int num = v[s];
 
-    cout << "Sorteio: ";
-
-    for (i = 0; i < tam; i++) {
-        j = rand() % tam;
-        aux = vet[ i ];
-        vet[ i ] = vet [ j ];
-        vet[ j ] = aux;
-    }
-        cout << vet[ j ] << "  ";
+    return num;
 } 
 
-int main() 
-{
+int main() {
 
-int vetX[ 6 ], i;
-
-    for (i = 0; i < 6; i++) {
+    vector<int> v(5);
+    for(int i = 0; i < v.size(); i++) {
         cout << "Digite um valor: " << endl;
-        cin >> vetX[ i ];
+        cin >> v[i];
     }
 
-    sorteio(vetX, 6);
+    int num = sorteio(v);
+    cout << "O numero sorteado foi: " << num << endl; 
 
-return 0;
 }
