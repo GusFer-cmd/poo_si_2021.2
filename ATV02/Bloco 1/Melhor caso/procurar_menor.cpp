@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 int procurar_menor ( int vet[], int tam) {
