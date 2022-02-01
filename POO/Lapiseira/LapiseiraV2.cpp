@@ -89,5 +89,16 @@ public:
 
 int main () {
 
+    Lapiseira lapiseira(3);
+    auto grafite1 = make_shared<Grafite>(1.5, 10, "Duro");
+    auto grafite2 = make_shared<Grafite>(1.5, 10, "Duro");
+    auto grafite3 = make_shared<Grafite>(1.5, 10, "Duro");
+
+    lapiseira.adicionaGrafite(grafite1);
+    lapiseira.adicionaGrafite(grafite2);
+    lapiseira.adicionaGrafite(grafite3);
+
+    cout << lapiseira << endl;
+
     return 0;
 }
