@@ -32,6 +32,9 @@ int vetX[ 6 ], i;
     }
 
     exclusivos(vetX, 6);
+    // 1 3 4 3 -2 -2 
+    // 1 3 4 -2
+
 
 return 0;
 }
