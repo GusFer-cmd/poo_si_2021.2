@@ -13,10 +13,28 @@ struct Pessoa {
         nome{nome}, idade{idade} {
     }         
 
+    //Destrutor	
+    ~Pessoa() {
+    
+    }
+
+    //Métodos
+
+    //Getters
+
+    int getIdade() {
+        return this->idade;
+    }
+
+    string getNome() {
+        return this->nome;
+    }
+
     //Friend para print (Operador de saída). Não é um metodo da classe.
     friend ostream& operator<<(ostream& os, const Pessoa& pessoa) {
         os << "Nome: " << pessoa.nome << ", ";
         os << "Idade: " << pessoa.idade << " anos\n";    
+        return os;
     }
 }; 
 
@@ -34,6 +52,11 @@ struct Moto {
         power{power}, tempo{tempo}, pessoa{pessoa} {
     }      
 
+    //Construtor de energia(power).
+    Moto(int power) : 
+        power{power} {
+    }
+    
     friend ostream& operator<<(ostream& os, const Moto& moto) { //Friend da moto
         os << "Potencia: " << moto.power << " \n";
         os << "Tempo: " << moto.tempo << " anos\n";    
@@ -52,10 +75,10 @@ struct Moto {
 
     Pessoa* removerPessoa() {
         if (this->pessoa == nullptr) {
-            cout << "Moto disponível\n";
+            cout << "Moto disponivel\n";
             return nullptr;
         } else {
-        cout << "Crianca foi removida da motoca" << endl;
+        cout << "Crianca foi removida da motoca. Moto disponivel" << endl;
         return exchange(this->pessoa, nullptr); //Replace, pra não perder o obj
         }
     }
@@ -67,24 +90,30 @@ struct Moto {
             this->tempo += tempo; //Incrementa
             cout << "Tempo adicionado com sucesso!\n";
         }   
-        cout << this->tempo << " minutos\n"; 
     }
 
     void drive(int tempo) {
-        if(this->tempo > 0 && this->pessoa != nullptr) { 
-            cout << "O tempo ainda nao acabou, continue a dirigir!\n";
+        if(this->pessoa != nullptr && this->pessoa->idade < 11) {
+            cout << "Crianca esta na motoca" << endl;
+        } else if (this->tempo == 0) {
+            cout << "Tempo acabou. Compre mais tempo!" << endl;
+        } else if (this->tempo >= tempo) {
+            this->tempo -= tempo; //Decrementa
         } else {
-            cout << "O passeio acabou!\n";
+            cout << "Tempo insuficiente" << endl;
         }
     }
 
     void honk(){
-        cout << "P";
-        for (int i = 0; i < this->power; i++) {
-            cout << "e";
+        if (this->pessoa == nullptr) {
+            cout << "Sem piloto, sem buzina" << endl;
+        } else
+            cout << "P";
+            for (int i = 0; i < this->power; i++) {
+                cout << "e";
+            }
+            cout << "m\n";
         }
-        cout << "m\n";
-    }
 };
 
 int main() {
