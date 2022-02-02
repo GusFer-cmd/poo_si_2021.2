@@ -13,7 +13,7 @@ void embaralhar(vector<int>&v) {
   
 int main() 
 {
-    vector<int> v(10);
+    vector<int> v(5);
     for (int i = 0; i < v.size(); i++) {
         cout << "Digite um valor: " << endl;
         cin >> v[i];
