@@ -10,20 +10,20 @@ int Pos = 0, encontrado = 0, contador = 0;
     cout << "Digite um numero que voce deseja procurar: " << endl;
 	cin >> num;
 	
-			for (int i = 0; i < tam; i++) {
-				if (vet[ i ] == num) {
-					encontrado = 1;
-					Pos = i + 1;
-            		contador++;
-        		}
-			}
+		for (int i = 0; i < tam; i++) {
+			if (vet[ i ] == num) {
+				encontrado = 1;
+				Pos = i + 1;
+            	contador++;
+        	}
+		}
 	        
-				if (encontrado == 0) {
-		        	cout << "Numero nao existente" << endl;
-	        	}
-	        	else {
-		        	cout << "Numero " << num << " aparece " << contador << "x no vetor." << " E sua proxima posicao: " << Pos << endl;
-	       		}
+			if (encontrado == 0) {
+		        cout << "Numero nao existente" << endl;
+	        }
+	        else {
+		        cout << "Numero " << num << " aparece " << contador << "x no vetor." << " E sua proxima posicao: " << Pos << endl;
+	       	}
 }
 
 int main()
