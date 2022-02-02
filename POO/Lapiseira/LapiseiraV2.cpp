@@ -18,6 +18,25 @@ class Grafite {
         calibre{calibre}, tamanho{tamanho}, dureza{dureza} {
     }
 
+    //Destrutor
+    ~Grafite() {
+    }
+
+    //Métodos
+
+    //Getters
+    float getCalibre() {
+        return this->calibre;
+    }
+
+    int getTamanho() {
+        return this->tamanho;
+    }
+
+    string getDureza() {
+        return this->dureza;
+    }
+
     //Friend (Operador de saída).
     friend ostream& operator<<(ostream& os, const Grafite& grafite) { //Constante posso usar "&"
         os << "Calibre: " << grafite.calibre << "mm, ";
@@ -72,6 +91,15 @@ public:
         return true;
     }
 
+    void escrever(int indice){
+        if (this->bico[indice] == nullptr) {
+            cout << "Bico sem grafite\n";
+        }
+        if (this->bico[indice]->getCalibre() <= 10) {
+            cout << "Grafite muito pequeno\n";
+        }
+    }
+
     friend ostream& operator<<(ostream& os, const Lapiseira& lapiseira) { //Friend
         os << "Grafite no bico: | "; //Mostrar grafite
         for (int i = 0; i < (int) lapiseira.bico.size(); i++) {
@@ -96,14 +124,17 @@ int main () {
 
     Lapiseira lapiseira(3);
     
-    lapiseira.adicionaGrafite(make_shared<Grafite>(2.0, 5, "Dura"));
-    lapiseira.adicionaGrafite(make_shared<Grafite>(1.5, 10, "Dura"));
-    lapiseira.adicionaGrafite(make_shared<Grafite>(3.0, 7, "Dura"));
+    lapiseira.adicionaGrafite(make_shared<Grafite>(2.0, 5, "6b"));
+    lapiseira.adicionaGrafite(make_shared<Grafite>(1.5, 11, "HB"));
+    lapiseira.adicionaGrafite(make_shared<Grafite>(3.0, 17, "2B"));
 
     lapiseira.colocarGrafite(0);
     lapiseira.colocarGrafite(1);
     lapiseira.colocarGrafite(2);
     lapiseira.colocarGrafite(0);
+
+    lapiseira.escrever(0);
+    lapiseira.escrever(1);
 
     lapiseira.removerGrafite(0);
 
