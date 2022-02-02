@@ -37,7 +37,7 @@ public:
     Lapiseira( int qtdGrafites) : bico(qtdGrafites, nullptr){ //Construtor da lapiseira
     }
 
-    void adicionaGrafite(shared_ptr<Grafite>& grafite) {
+    void adicionaGrafite(const shared_ptr<Grafite>& grafite) {
         this->tambor.push_back(grafite); //Colocar grafite no final do tambor.
     }
 
@@ -95,15 +95,20 @@ public:
 int main () {
 
     Lapiseira lapiseira(3);
-    auto grafite1 = make_shared<Grafite>(1.5, 10, "Duro");
-    auto grafite2 = make_shared<Grafite>(2.0, 5, "Duro");
-    auto grafite3 = make_shared<Grafite>(4.0, 7, "Duro");
+    
+    lapiseira.adicionaGrafite(make_shared<Grafite>(2.0, 5, "Dura"));
+    lapiseira.adicionaGrafite(make_shared<Grafite>(1.5, 10, "Dura"));
+    lapiseira.adicionaGrafite(make_shared<Grafite>(3.0, 7, "Dura"));
 
-    lapiseira.adicionaGrafite(grafite1);
-    lapiseira.adicionaGrafite(grafite2);
-    lapiseira.adicionaGrafite(grafite3);
+    lapiseira.colocarGrafite(0);
+    lapiseira.colocarGrafite(1);
+    lapiseira.colocarGrafite(2);
+    lapiseira.colocarGrafite(0);
+
+    lapiseira.removerGrafite(0);
 
     cout << lapiseira << endl;
+
 
     return 0;
 }
