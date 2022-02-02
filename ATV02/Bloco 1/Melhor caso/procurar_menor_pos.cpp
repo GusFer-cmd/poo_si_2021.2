@@ -6,14 +6,14 @@ int procurar_menor_pos ( int vet[], int tam ) {
 int i, posM = 0;
 int menor = vet[ 0 ];
         
-        for ( i = 0; i < tam; i++) {
-            if ( vet[ i ] < menor){
-                menor = vet[ i ];
-                posM = i + 1;
-            }
+    for ( i = 0; i < tam; i++) {
+        if ( vet[ i ] < menor){
+            menor = vet[ i ];
+            posM = i + 1;
         }
+    }
     
-        cout << "O menor valor encontrado: " << menor << " e sua posicao: " << posM << endl;
+    cout << "O menor valor encontrado: " << menor << " e sua posicao: " << posM << endl;
 }
 
 int main()
