@@ -27,9 +27,9 @@ int main()
 int vetX[ 5 ], i;
     
     for (i = 0; i < 5; i++) {
-			cout << "Digite um valor: " << endl;
-			cin >> vetX[ i ];
-		}
+	    cout << "Digite um valor: " << endl;
+		cin >> vetX[ i ];
+	}
 
     contar( vetX, 5);
 
