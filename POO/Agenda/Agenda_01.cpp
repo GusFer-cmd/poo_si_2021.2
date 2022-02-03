@@ -7,33 +7,36 @@
 using namespace std;
 
 class Fone {
-    private:
-        string numero;
-        string id;
+private:
+    string numero;
+    string id;
 
-    public:
-    Fone(string id = "", string numero = "") :
+public:
+    Fone(string id = "", string numero = "") : //Construtor
         id{id}, numero{numero} {
     }    
 
-        string getNumero() {
-            return this->numero;
-        }
+    //Métodos	
+    //Getters
 
-        string getId() {
-            return this->id;
-        }
+    string getNumero() {
+        return this->numero;
+    }
 
-        static bool validar(string numero) {
-            int indice = 0;
-            for ( int i = 0; i < 9; i++){
-                indice += numero[i] * (10 - 1);
-            }
-            if (indice % 11 == 0 || indice % 11 == 1) {
-                if (numero[9] == 0) {
-                    return true;
-                } else {
-                    return false;
+    string getId() {
+        return this->id;
+    }
+
+    static bool validar(string numero) { //Validar número de telefone
+        int indice = 0;
+        for ( int i = 0; i < 9; i++){
+            indice += numero[i] * (10 - 1);
+        }
+        if (indice % 11 == 0 || indice % 11 == 1) {
+            if (numero[9] == 0) {
+                return true;
+            } else {
+                return false;
                 }
             } else {
                 if (numero[9] == (11 - (indice % 11))) {
@@ -44,18 +47,19 @@ class Fone {
             }
         }
 
+    //Friend
     friend ostream& operator<<(ostream& os, Fone& fone) {
-        os << fone.getId() << ": " << fone.getNumero() << "]" << endl;
+        os << fone.id << ": " << fone.numero << "]" << endl;
         return os;
     }
 };
 
 class Contato {
-    private:
+private:
     string name;
     vector<Fone> fones;    
 
-    bool numeroRepetido(Fone fone) {
+    bool numeroRepetido(Fone fone) { //Verificar se número já existe
         for (int i = 0; i < (int)this->fones.size(); i++) {
             if ((this->fones[i].getId() == fone.getId()) && (this->fones[i].getNumero() == fone.getNumero())) {
                 return true;
@@ -64,12 +68,12 @@ class Contato {
         return false;
     }    
 
-    public:
-    Contato(string name = "") :
+public:
+    Contato(string name = "") : //Construtor
         name{name} {
     }
 
-    void addFone(Fone fone) {
+    void addFone(Fone fone) { //Adicionar número
         if (fone.validar != nullptr) {
             if (numeroRepetido(fone)){
                 cout << "Numero repetido" << endl;
@@ -82,7 +86,7 @@ class Contato {
         }
     }
 
-    void removerFone(int indice){
+    void removerFone(int indice){ //Remover número
         if (indice < 0 || indice >= (int)this->fones.size()) {
             return;
         }
@@ -90,6 +94,9 @@ class Contato {
         cout << "Numero removido" << endl;
         return;
     }
+
+    //Metodos
+    //Getters
 
     vector<Fone> getFones(){
         return this->fones;
@@ -99,8 +106,9 @@ class Contato {
         return this->name;
     }
 
+    //Friend
     friend ostream& operator<<(ostream& os, Contato& contato) {
-        os << contato.getNome() << " ";
+        os << contato.name << " ";
         for (int i = 0; i < (int)contato.fones.size(); i++) {
             auto fone = contato.fones[i];
             os << "[" << i << ":" << fone << endl;
