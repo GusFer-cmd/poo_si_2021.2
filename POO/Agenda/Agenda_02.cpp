@@ -6,33 +6,33 @@
 using namespace std;
 
 class Fone {
-    private:
-        string numero;
-        string id;
+private:
+    string numero;
+    string id;
 
-    public:
+public:
     Fone(string id = "", string numero = "") :
         id{id}, numero{numero} {
     }    
 
-        string getNumero() {
-            return this->numero;
-        }
+    string getNumero() {
+        return this->numero;
+    }
 
-        string getId() {
-            return this->id;
-        }
+    string getId() {
+        return this->id;
+    }
 
-        static bool validar(string numero) {
-            int indice = 0;
-            for ( int i = 0; i < 9; i++){
-                indice += numero[i] * (10 - 1);
-            }
-            if (indice % 11 == 0 || indice % 11 == 1) {
-                if (numero[9] == 0) {
-                    return true;
-                } else {
-                    return false;
+    static bool validar(string numero) {
+        int indice = 0;
+        for ( int i = 0; i < 9; i++){
+            indice += numero[i] * (10 - 1);
+        }
+        if (indice % 11 == 0 || indice % 11 == 1) {
+            if (numero[9] == 0) {
+                return true;
+            } else {
+                return false;
                 }
             } else {
                 if (numero[9] == (11 - (indice % 11))) {
@@ -50,7 +50,7 @@ class Fone {
 };
 
 class Contato {
-    private:
+private:
     string name;
     vector<Fone> fones;    
 
@@ -63,7 +63,7 @@ class Contato {
         return false;
     }    
 
-    public:
+public:
     Contato(string name = "") :
         name{name} {
     }
@@ -109,7 +109,7 @@ class Contato {
 };
 
 class Agenda{
-    private:
+private:
     vector<Contato> contatos;
 
     int encontrarPos(string name) {
