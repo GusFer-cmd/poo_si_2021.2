@@ -3,91 +3,120 @@
 #include <memory>
 #include <algorithm>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
 class Cliente {
     
-    private:
+private:
     string id;
     string fone;
 
-    public:
-    Cliente(string id = "", string fone = "") :
+public:
+    Cliente(string id = "", string fone = "") : //Construtor do cliente
         id{id}, fone{fone} {
     }
 
-    string getId() {
+    //Metodos
+    //Getters
+    string getId() const {
         return this->id;
     }
 
-    string getFone() {
+    string getFone() const {
         return this->fone;
     }
 
-
+    //Friend
     friend ostream& operator<<(ostream& os, Cliente& cliente) {
-        os << "Id: " << cliente.getId() << ", Fone: " << cliente.getFone() << endl;
+        os << "Id: " << cliente.id << ", Fone: " << cliente.fone << endl;
         return os;
     }
 };
 
 class Sala{
-    private:
-    vector<shared_ptr<Cliente>> cadeiras;
-
+private:
+    map<int, shared_ptr<Cliente>> cadeiras;
+    
 public:
-    Sala(int qtdCadeiras) : cadeiras{qtdCadeiras, nullptr} {
+
+    Sala(){}; //Construtor de inicialização da sala
+
+    bool validarCliente(string id){ //Verifica se o cliente existe
+        for (auto it = this->cadeiras.begin(); it != this->cadeiras.end(); ++it){
+            if (it->second->getId() == id){
+                return true;
+            }
+        }
+        return false;
     }
 
-    bool reservar(shared_ptr<Cliente> client, int ind) {
-        if (this->cadeiras[ind] != nullptr || ind >= (int)this->cadeiras.size()) {
-            cout << "Cadeira já reservada" << endl;
+    bool reservarCadeira(const shared_ptr<Cliente>& cliente, int indice){ //Reserva uma cadeira
+        auto it = cadeiras.find(indice);
+    
+        if (it != cadeiras.end()){ //Verifica se a cadeira está ocupada
+            cout << "Cadeira ocupada\n";
             return false;
         }
 
-        this->cadeiras[ind] = client;
-        cout << "Cadeira reservada" << endl;
+        if (validarCliente(cliente->getId())){ //Não pode reservar uma cadeira que já está reservada
+            cout << "Cliente ja tem uma reserva\n";
+            return false;
+        }
+
+        cadeiras[indice] = cliente; //Reserva a cadeira
+        cout << "Cadeira reservada\n";
         return true;
     }
 
-    void cancelar(string id) {
-        for (int i = 0; i < (int)this->cadeiras.size(); ++i) {
-            if (this->cadeiras[i] != nullptr && this->cadeiras[i]->getId() == id) {
-                this->cadeiras[i] = nullptr;
-                cout << "Reserva cancelada" << endl;
-                break;
+    bool cancelar(string id){ //Cancela uma reserva
+        for (auto it = this->cadeiras.begin(); it != this->cadeiras.end(); ++it){
+            if (it->second->getId() == id){
+                cadeiras.erase(it);
+                cout << "Reserva cancelada\n";
+                return true;
             }
         }
     }
-
-    friend ostream& operator<<(ostream& os, const Sala& s) {
-        for (int i = 0; i < (int)s.cadeiras.size(); i++) {
-            auto &cadeira = s.cadeiras[i];
-            os << i << ":";
-            if (cadeira != nullptr) {
-                os << *cadeira;
-            } else {
-                os << "******";
-            os << " || ";
-            }
+    //Friend
+    friend ostream& operator<<(ostream& os, const Sala& sala){
+        os << "Cadeiras: " << endl;
+        for (auto it = sala.cadeiras.begin(); it != sala.cadeiras.end(); ++it){
+            os << it->first << ": " << *(it->second) << endl;
+            os << " | ";
         }
+        os << "]";
         return os;
     }
-
 };
 
 int main () {
 
-    Sala sala(5);
+     Sala cinema;
+    while(true) {
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        string cmd;
+        ss >> cmd;
+        if (cmd == "exit") {
+            break;
+        } else if (cmd == "show") {
+            cout << cinema << endl;
+        } else if (cmd == "reservar") {
+            string fone{};
+            string id{};
+            int indice{};
+            ss >> fone >> id >> indice;
+            cinema.reservarCadeira(make_shared<Cliente>(fone, id), indice);
+        } else if (cmd == "cancelar") {
+            string id{};
+            ss >> id;
+            cinema.cancelar(id);
+        }
+    }
 
-    sala.reservar(make_shared<Cliente>("123", "Pedro"), 0);
-    sala.reservar(make_shared<Cliente>("456", "Gustavo"), 1);
-    sala.reservar(make_shared<Cliente>("789", "Larissa"), 2);
 
-    sala.cancelar("123");
-    cout << "\n";
 
-    cout << sala << endl;
-    cout << "\n";
 }

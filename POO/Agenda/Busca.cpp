@@ -102,7 +102,7 @@ public:
         os << contato.getNome() << " ";
         for (int i = 0; i < (int)contato.fones.size(); i++) {
             auto fone = contato.fones[i];
-            os << "[" << i << ":" << fone << endl;
+            os << "[" << i << ":" << fone;
         }
         return os;
     }
@@ -112,7 +112,7 @@ class Agenda{
 private:
     vector<Contato> contatos;
 
-    int encontrarPos(string name) {
+    int encontrarPos(string name) { //Retorna posição do contato e retorna -1
         for (int i = 0; i < (int)this->contatos.size(); i++) {
             if (this->contatos[i].getNome() == name) {
                 return i;
@@ -140,13 +140,15 @@ private:
     }
 
 public:
-    Agenda(){} 
+    Agenda(){} //Construtor para inicializar a agenda
 
+    //Metodos 
+    //Getters
     Contato getContato(string name) {
         return this->contatos[encontrarPos(name)];
     }
 
-    void addFone(Contato contato){
+    void addFone(Contato contato){ //Adiciona um fone a um contato
         if (!existe(contato.getNome())) {
             this->contatos.push_back(contato);
             return;    
@@ -159,7 +161,7 @@ public:
         }
     }
 
-    void removerFone(string name, int indice) {
+    void removerFone(string name, int indice) { //Remover um fone de um contato
         int posicao = encontrarPos(name);
         if(posicao != -1) {
             this->contatos[posicao].removerFone(indice);
@@ -169,7 +171,7 @@ public:
         return;
     }
 
-    void removerContato(string name) {
+    void removerContato(string name) { //Remover um contato
         int posicao = encontrarPos(name);
         if(posicao != -1) {
             this->contatos.erase(contatos.begin() + posicao);
@@ -182,7 +184,7 @@ public:
 
     vector<Contato> search(string pattern) {
         vector<Contato> resultado;
-        for (int i = 0; i < (int)contatos.size(); i++) {
+        for (int i = 0; i < (int)contatos.size(); i++) { //Percorre todos os contatos procurando pelo nome
             if (contatos[i].getNome().find(pattern) != string::npos) {
                 resultado.push_back(contatos[i]);
                 cout << resultado[i] << endl;
@@ -208,7 +210,7 @@ public:
             for (int i = 0; i < (int)agenda.contatos.size(); i++) {
                 auto contatos = agenda.contatos[i];
                 os << i << ":";
-                os << contatos << endl;
+                os << contatos;
             }
         }
         return os;
@@ -227,7 +229,7 @@ int main() {
     Joao.addFone(Fone("tim", "99943-4343"));
     Fred.addFone(Fone("tim", "99909-1211"));
     Fred.addFone(Fone("vivo", "99999-9999"));
-    Maria.addFone(Fone("tim", "99943-4343"));
+    Maria.addFone(Fone("oi", "99943-4343"));
 
     cout << "Lista" << endl;
     agenda.addFone(Joao);
