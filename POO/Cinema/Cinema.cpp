@@ -10,9 +10,13 @@ class Cliente {
     string id;
     string fone;
 
-    Cliente(string id = "", string fone = "") :
+    Cliente(string id = "", string fone = "") : //Construtor
         id{id}, fone{fone} {
     }
+
+    //Métodos
+
+    //Getters e Setters
 
     string getId() {
         return this->id;
@@ -41,7 +45,7 @@ class Sala{
     list<shared_ptr<Cliente>> fila;
 
 public:
-    Sala(int qtdCadeiras) : cadeiras(qtdCadeiras, nullptr){
+    Sala(int qtdCadeiras) : cadeiras(qtdCadeiras, nullptr){ //Informar quantidade de cadeiras.
     }
 
     void entrar(const shared_ptr<Cliente>& cliente) {
@@ -53,7 +57,7 @@ public:
             cout << "Cinema fechado\n";
             return false;
         }
-        if (this->cadeiras[indice] != nullptr) {
+        if (this->cadeiras[indice] != nullptr) { //Duas pessoas no mesmo lugar, não pode.
             cout << "Cadeira reservada\n";
             return false;
         }
@@ -75,7 +79,7 @@ public:
             cout << "Cadeira vazia\n";
             return false;
         }
-        this->cadeiras[indice] = nullptr;
+        this->cadeiras[indice] = nullptr; //Acabou a sessão
         return true;
     }    
 
@@ -97,7 +101,7 @@ public:
             if (cadeira != nullptr) {
                 os << *cadeira;
             } else {
-                os << "-----";
+                os << "-----"; //Cadeira vazia
             os << " | ";    
             }
         }
@@ -112,17 +116,17 @@ public:
 
 int main () {
     Sala sala(3);
-    sala.entrar(make_shared<Cliente>("David", "123"));
-    sala.entrar(make_shared<Cliente>("Pedro", "456"));
-    sala.entrar(make_shared<Cliente>("Lucas", "789"));
-    sala.entrar(make_shared<Cliente>("Gustavo", "101112"));
+    sala.entrar(make_shared<Cliente>("David - 10", "123"));
+    sala.entrar(make_shared<Cliente>("Pedro - 11", "456"));
+    sala.entrar(make_shared<Cliente>("Lucas - 12", "789"));
+    sala.entrar(make_shared<Cliente>("Gustavo - 13", "101"));
 
     sala.reservarCadeira(0);
     sala.reservarCadeira(1);
     sala.reservarCadeira(2);
     sala.reservarCadeira(0);
 
-    sala.cancelar("Pedro");
+    sala.cancelar("Pedro - 11");
 
     sala.finalizarSessao(0);
     
