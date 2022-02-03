@@ -6,10 +6,11 @@
 using namespace std;
 
 class Cliente {
-    public:
+private:  
     string id;
     string fone;
 
+public:
     Cliente(string id = "", string fone = "") : //Construtor
         id{id}, fone{fone} {
     }
@@ -58,7 +59,7 @@ public:
             return false;
         }
         if (this->cadeiras[indice] != nullptr) { //Duas pessoas no mesmo lugar, não pode.
-            cout << "Cadeira reservada\n";
+            cout << "Cadeira ja foi reservada, selecione outra que esteja disponivel\n";
             return false;
         }
         if (this->fila.empty()) {
@@ -80,6 +81,7 @@ public:
             return false;
         }
         this->cadeiras[indice] = nullptr; //Acabou a sessão
+        cout << "O filme acabou, pode ir pra casa\n";
         return true;
     }    
 
@@ -124,12 +126,11 @@ int main () {
     sala.reservarCadeira(0);
     sala.reservarCadeira(1);
     sala.reservarCadeira(2);
-    sala.reservarCadeira(0);
+    sala.reservarCadeira(0); //Cadeira já reservada
 
-    sala.cancelar("Pedro - 11");
+    sala.cancelar("Pedro - 11");//Pedro cancelou sua reserva, cadeira 1 disponivel.
 
-    sala.finalizarSessao(0);
-    
+    sala.finalizarSessao(0);//Sessão do David acabou
     
     cout << sala << endl;
 
