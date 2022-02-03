@@ -94,7 +94,7 @@ public:
 int main () {
 
      Sala cinema;
-    while(true) {
+        while(true) {
         string line;
         getline(cin, line);
         stringstream ss(line);
