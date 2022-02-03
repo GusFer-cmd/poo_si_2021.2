@@ -111,7 +111,7 @@ public:
         os << contato.name << " ";
         for (int i = 0; i < (int)contato.fones.size(); i++) {
             auto fone = contato.fones[i];
-            os << "[" << i << ":" << fone << endl;
+            os << "[" << i << ":" << fone;
         }
         return os;
     }
@@ -121,12 +121,12 @@ int main()
 {
     Contato contato("Joao");
     contato.addFone(Fone("oi", "8808"));
-    contato.addFone(Fone("casa", "323431"));
+    contato.addFone(Fone("casa", "3250"));
     cout << "\n";
 
     Contato contato2("Ellen");
     contato2.addFone(Fone("tim", "9186"));
-    contato2.addFone(Fone("casa", "323431"));
+    contato2.addFone(Fone("casa", "3234"));
     cout << "\n";
 
     Contato contato3("Lucas");
