@@ -1,20 +1,20 @@
 #include <iostream>
+#include <memory>
 #include <vector>
 #include <list>
-#include <memory>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
 class Grafite {
-    
-    //Declarando variáveis
-    public:
+private:
     float calibre;
     int tamanho;
     string dureza;
 
-    //Construtor
-    Grafite(float calibre, int tamanho, string dureza) : 
+public:
+    Grafite(float calibre = 0, int tamanho = 0, string dureza = "") : //Construtor
         calibre{calibre}, tamanho{tamanho}, dureza{dureza} {
     }
 
@@ -23,6 +23,22 @@ class Grafite {
     }
 
     //Métodos
+
+    //Possíveis casos de dureza no uso do grafite por folha
+    int Folha(){ 
+        if (this->dureza == "HB"){
+            return 1;
+        } else if (this->dureza == "2B"){
+            return 2;
+        } else if (this->dureza == "4B"){
+            return 3;
+        } else if (this->dureza == "6B"){
+            return 4;
+        } else {
+            cout << "Dureza inválida" << endl;
+            return 0;
+        }
+    }
 
     //Getters
     float getCalibre() {
@@ -37,28 +53,42 @@ class Grafite {
         return this->dureza;
     }
 
+    //Setters
+    bool setTamanho(int tamanho) {
+        if (tamanho >= 10) {
+            this->tamanho = tamanho;
+            return true;
+        } else {
+            this->tamanho = 10;
+            return false;
+        }
+    }
+
     //Friend (Operador de saída).
-    friend ostream& operator<<(ostream& os, const Grafite& grafite) { //Constante posso usar "&"
-        os << "Calibre: " << grafite.calibre << "mm, ";
-        os << "Tamanho: " << grafite.tamanho << "mm, ";
-        os << "Dureza: " << grafite.dureza << ".";
+    friend ostream& operator<<(ostream& os, Grafite& grafite) { //Constante posso usar "&"
+        os << "Calibre: " << grafite.calibre << endl;
+        os << "Tamanho: " << grafite.tamanho << endl;
+        os << "Dureza: " << grafite.dureza << endl;
         return os;
     }
 };
 
-//Nova classe
 class Lapiseira {
-    //shared ptr 
-    vector<shared_ptr<Grafite>> bico;
-    list<shared_ptr<Grafite>> tambor; //Elemento independente
+private:
+    list<shared_ptr<Grafite>> tambor; //Elemento independente. Todos os grafitos que estão no tambor.
+    vector<shared_ptr<Grafite>> bico {nullptr}; //O grafite que está no bico.
+    float dureza {0}; //Inicializando a dureza como 0.
 
 public:
-    Lapiseira( int qtdGrafites) : bico(qtdGrafites, nullptr){ //Construtor da lapiseira
+    
+    Lapiseira(float dureza = 0.0) : //Construtor de dureza
+        dureza{dureza} {
     }
 
-    void adicionaGrafite(const shared_ptr<Grafite>& grafite) {
-        this->tambor.push_back(grafite); //Colocar grafite no final do tambor.
-    }
+    //Metodos
+    void inserirGrafite(const shared_ptr<Grafite>& grafite){
+        tambor.push_back(grafite);
+    } 
 
     bool colocarGrafite(int indice) { //Tambor não existe
         if (indice < 0 || indice >= this->bico.size()) { 
@@ -91,12 +121,12 @@ public:
         return true;
     }
 
-    void escrever(int indice){
+    void escrever(int indice) {
         if (this->bico[indice] == nullptr) {
             cout << "Bico sem grafite\n";
         }
-        if (this->bico[indice]->getCalibre() <= 10) {
-            cout << "Grafite muito pequeno\n";
+        if (indice >= this->bico.size() <= 10) {
+            cout << "Grafite muito curto\n";
         }
     }
 
@@ -123,15 +153,14 @@ public:
 int main () {
 
     Lapiseira lapiseira(1);
-    
-    lapiseira.adicionaGrafite(make_shared<Grafite>(2.0, 5, "6B"));
-    lapiseira.adicionaGrafite(make_shared<Grafite>(1.5, 11, "HB"));
-    lapiseira.adicionaGrafite(make_shared<Grafite>(3.0, 17, "2B"));
+
+    lapiseira.inserirGrafite(make_shared<Grafite>(0.5, 5, "2B"));
+    lapiseira.inserirGrafite(make_shared<Grafite>(0.5, 13, "6B"));
+    lapiseira.inserirGrafite(make_shared<Grafite>(0.5, 17, "HB"));
 
     lapiseira.colocarGrafite(0);
     lapiseira.colocarGrafite(1);
     lapiseira.colocarGrafite(2);
-    lapiseira.colocarGrafite(0);
 
     lapiseira.escrever(0);
     lapiseira.escrever(1);
@@ -140,6 +169,4 @@ int main () {
 
     cout << lapiseira << endl;
 
-
-    return 0;
 }
