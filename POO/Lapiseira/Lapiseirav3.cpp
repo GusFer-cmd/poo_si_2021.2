@@ -152,7 +152,7 @@ public:
 
 int main () {
 
-    Lapiseira lapiseira(0.5);
+    Lapiseira lapiseira(1);
 
     lapiseira.inserirGrafite(make_shared<Grafite>(0.5, 5, "2B"));
     lapiseira.inserirGrafite(make_shared<Grafite>(0.5, 13, "6B"));

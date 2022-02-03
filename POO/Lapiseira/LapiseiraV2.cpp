@@ -122,9 +122,9 @@ public:
 
 int main () {
 
-    Lapiseira lapiseira(3);
+    Lapiseira lapiseira(1);
     
-    lapiseira.adicionaGrafite(make_shared<Grafite>(2.0, 5, "6b"));
+    lapiseira.adicionaGrafite(make_shared<Grafite>(2.0, 5, "6B"));
     lapiseira.adicionaGrafite(make_shared<Grafite>(1.5, 11, "HB"));
     lapiseira.adicionaGrafite(make_shared<Grafite>(3.0, 17, "2B"));
 

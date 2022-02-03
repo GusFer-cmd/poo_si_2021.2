@@ -218,7 +218,6 @@ public:
 }; 
 
 int main() {
-    cout << "AGENDA" << endl;
     Agenda agenda;
 
     cout << "Adicionar contatos" << endl;
