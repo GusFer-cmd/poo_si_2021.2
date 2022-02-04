@@ -12,7 +12,6 @@ public:
     }
 
     virtual ~Pokemon() {
-        cout << "Pokemon fugiu" << endl;
     }
 
     virtual bool isAlive() const { 
@@ -28,7 +27,7 @@ public:
     }
 
     friend ostream& operator<<(ostream& os, const Pokemon& pokemon) {
-        os << pokemon.tipo << ":" << (pokemon.alive ? "vivo" : "morto");
+        os << pokemon.tipo << ":" << (pokemon.alive ? "vivo" : "retornou para o seu treinador");
         return os;
     }
 };
@@ -38,11 +37,10 @@ class Pet : public Pokemon {
 
 public:
     Pet(string nome, string tipo) : Pokemon(tipo), nome(nome) {
-        cout << this->nome << " Saiu da pokebola" << endl;
+        cout << this->nome << " saiu da pokebola" << endl;
     }
 
     virtual ~Pet() {
-        cout << this->nome << " Entrou na pokebola" << endl;
     }
 
     virtual void x1() const {
@@ -64,53 +62,51 @@ public:
     }
 };
 
-class Meaow : public Pet {
+class Batalha : public Pet {
     int vidas {7};
 
 public:
-    Meaow(string nome, int vidas = 7) : Pet(nome, "Meaow"), vidas(vidas) {
+    Batalha(string nome, int vidas = 7) : Pet(nome, ""), vidas(vidas) {
     }
 
-    ~Meaow() {
+    ~Batalha() {
     }
 
-    virtual void meaow() const {
-        cout << this->getNome() << "Meaow" << endl;
-    }
-
-    virtual void decolando() {
+    virtual void ataque() {
         if(this->vidas == 0) {
-            cout << "Equipe rocket decolando de novo" << endl;
+            cout << "Pokemom esta fora de combate" << endl;
         } else if (this->vidas > 1){
-            cout << "Equipe rocket pronta pra batalha" << endl;
+            cout << "Pokemom tomou um ataque" << endl;
         } else {
             this->vidas--;
-            cout << "Equipe Rocket decolou" << endl;
+            cout << "O pokemom retornou para o seu treinador" << endl;
             this->Pokemon::die();
         }
     }
 
-    friend ostream& operator<<(ostream& os, const Meaow& meaow){
-        const Pet* pet = &meaow;
-        os << *pet << ":" << meaow.vidas;
+    friend ostream& operator<<(ostream& os, const Batalha& batalha){
+        const Pet* pet = &batalha;
+        os << *pet << ":" << batalha.vidas;
         return os; 
     }
 };
 
 int main() {
-    Meaow meaow {"Pikachu", 3};
-    Pokemon& pokemon = meaow;
-    pokemon.die();
-    pokemon.die();
-    pokemon.die();
+    Batalha batalha {"Pikachu", 3};
+    Pokemon& pokemon = batalha;
     cout << pokemon << endl;
+    cout << batalha << endl;
 
-    Meaow meaow2 {"Onix", 7};
-    cout << meaow2 << endl;
-    meaow2.x1();
-    meaow2.meaow();
-    meaow2.die();
-
-
-
+    Batalha batalha2 {"Onix", 2};
+    cout << batalha2 << endl;
+    batalha.x1();
+    batalha2.x1();
+    
+    batalha.ataque();
+    batalha2.ataque();
+    batalha2.ataque();
+    batalha.ataque();
+    batalha2.die();
+    cout << batalha2 << endl;
+    cout << batalha << endl;
 }
