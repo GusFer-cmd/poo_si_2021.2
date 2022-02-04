@@ -109,4 +109,5 @@ int main() {
     batalha2.die();
     cout << batalha2 << endl;
     cout << batalha << endl;
+    
 }
