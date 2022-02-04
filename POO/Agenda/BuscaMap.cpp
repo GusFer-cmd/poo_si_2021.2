@@ -6,33 +6,35 @@
 using namespace std;
 
 class Fone {
-    private:
+private:
         string numero;
         string id;
 
-    public:
-    Fone(string id = "", string numero = "") :
+public:
+    Fone(string id = "", string numero = "") : //Construtor de Fone
         id{id}, numero{numero} {
     }    
 
-        string getNumero() {
-            return this->numero;
-        }
+    //Metodos
+    //Getters
+    string getNumero() {
+        return this->numero;
+    }
 
-        string getId() {
-            return this->id;
-        }
+    string getId() {
+        return this->id;
+    }
 
-        static bool validar(string numero) {
-            int indice = 0;
-            for ( int i = 0; i < 9; i++){
-                indice += numero[i] * (10 - 1);
-            }
-            if (indice % 11 == 0 || indice % 11 == 1) {
-                if (numero[9] == 0) {
-                    return true;
-                } else {
-                    return false;
+    static bool validar(string numero) { //Validar número de telefone
+        int indice = 0;
+        for ( int i = 0; i < 9; i++){
+            indice += numero[i] * (10 - 1);
+        }
+        if (indice % 11 == 0 || indice % 11 == 1) {
+            if (numero[9] == 0) {
+                return true;
+            } else {
+                return false;
                 }
             } else {
                 if (numero[9] == (11 - (indice % 11))) {
@@ -43,6 +45,7 @@ class Fone {
             }
         }
 
+    //Friend (Operador de saída)
     friend ostream& operator<<(ostream& os, Fone& fone) {
         os << fone.getId() << ": " << fone.getNumero() << "]" << endl;
         return os;
@@ -50,11 +53,11 @@ class Fone {
 };
 
 class Contato {
-    private:
+private:
     string name;
     vector<Fone> fones;    
 
-    bool numeroRepetido(Fone fone) {
+    bool numeroRepetido(Fone fone) { //Verifica se o numero já existe
         for (int i = 0; i < (int)this->fones.size(); i++) {
             if ((this->fones[i].getId() == fone.getId()) && (this->fones[i].getNumero() == fone.getNumero())) {
                 return true;
@@ -63,33 +66,35 @@ class Contato {
         return false;
     }    
 
-    public:
-    Contato(string name = "") :
+public:
+    Contato(string name = "") : //Construtor de Contato
         name{name} {
     }
 
-    void addFone(Fone fone) {
-        if (fone.validar != nullptr) {
-            if (numeroRepetido(fone)){
+    void addFone(Fone fone) { //Adicionar numero
+        if (fone.validar != nullptr) { 
+            if (numeroRepetido(fone) == 1){
                 cout << "Numero repetido" << endl;
                 return;
             }
-            this->fones.push_back(fone);
+            this->fones.push_back(fone); //Depois da verificação adiciona o numero
                 cout << "Numero adicionado\n";
         } else {
             cout << "Numero invalido" << endl;
         }
     }
 
-    void removerFone(int indice){
-        if (indice < 0 || indice >= (int)this->fones.size()) {
+    void removerFone(int indice){ //Remover o fone
+        if (indice < 0 || indice >= (int)this->fones.size()) { //Verifica se está no limite do vector de fone
             return;
         }
-        this->fones.erase(this->fones.begin() + indice);
+        this->fones.erase(this->fones.begin() + indice); //Remove o fone
         cout << "Numero removido" << endl;
         return;
     }
 
+    //Metodos
+    //Getters
     vector<Fone> getFones(){
         return this->fones;
     }
@@ -98,6 +103,7 @@ class Contato {
         return this->name;
     }
 
+    //Friend (Operador de saída)
     friend ostream& operator<<(ostream& os, Contato& contato) {
         os << contato.getNome() << " ";
         for (int i = 0; i < (int)contato.fones.size(); i++) {
@@ -109,49 +115,44 @@ class Contato {
 };
 
 class Agenda{
-    private:
+private:
     map<string, Contato> contatos;
 
-    public:
-    Agenda() {};    
-       
+public:
+    Agenda() {}; //Construtor de inicialização da agenda
+
+     //Getters  
     Contato getContato(string nome) {
         return this->contatos[nome];
     }
     
-    void addContato(Contato contato) {
-        auto it = contatos.find(contato.getNome());
+    void addContato(Contato contato) { //Adicionar contato
+        auto it = contatos.find(contato.getNome()); //Verifica se o contato já existe
         if ( it == contatos.end()) {
             contatos[contato.getNome()] = contato;
         } else{
-        it -> second.addFone(contato.getFones()[0]);
+        it -> second.addFone(contato.getFones()[0]); //Caso contrário adiciona
         }
     } 
 
-    void removerFone(string nome){
-        auto it = contatos.find(nome);
+    void removerFone(string nome, int index) {
+        auto it = contatos.find(nome); //Verifica se o contato existe
         if (it != contatos.end()) {
-            contatos.erase(it);
+            it->second.removerFone(index); //Caso exista remove o contato
+        } else { 
+            cout << "Contato selecionado nao encontrado" << endl;
+        }
+        if (it != contatos.end()) {
+            contatos.erase(it); //Remove o contato
         }else {
              cout << "Contato " << nome << " nao encontrado" << endl;
         }
     }
 
-    void removerFone(string nome, int index) {
-        auto it = contatos.find(nome);
-
-        if (it != contatos.end()) 
-        {
-            it->second.removerFone(index);
-        } else { 
-            cout << "Contato selecionado nao encontrado" << endl;
-        }
-    }
-
     void search(string n){
         for (auto cont : contatos){
-            size_t found = cont.second.getNome().find(n);
-            if (found != string::npos) {
+            size_t found = cont.second.getNome().find(n); //Percorre a agenda procurando o contato
+            if (found != string::npos) { 
                 cout << cont.second << endl;
             }
         }
@@ -169,7 +170,7 @@ class Agenda{
 
 int main() {  
 
-cout << "AGENDA" << endl;
+    cout << "AGENDA" << endl;
     Agenda agenda;
 
     cout << "Adicionar contatos" << endl;
@@ -190,7 +191,7 @@ cout << "AGENDA" << endl;
     cout << agenda << endl;
 
     cout << "Remover contato" << endl;
-    agenda.removerFone("Maria");
+    agenda.removerFone("Maria", 1);
     agenda.removerFone("Fred", 1);
 
     cout << "Procurar contatos" << endl;
