@@ -11,10 +11,12 @@ private:
     string id;
 
 public:
-    Fone(string id = "", string numero = "") :
+    Fone(string id = "", string numero = "") : //Construtor de Fone
         id{id}, numero{numero} {
     }    
 
+    //Metodos
+    //Getters
     string getNumero() {
         return this->numero;
     }
@@ -23,7 +25,7 @@ public:
         return this->id;
     }
 
-    static bool validar(string numero) {
+    static bool validar(string numero) { //Validar número de telefone
         int indice = 0;
         for ( int i = 0; i < 9; i++){
             indice += numero[i] * (10 - 1);
@@ -43,6 +45,7 @@ public:
             }
         }
 
+    //Friend (Operador de saída)
     friend ostream& operator<<(ostream& os, Fone& fone) {
         os << fone.getId() << ": " << fone.getNumero() << "]" << endl;
         return os;
@@ -54,7 +57,7 @@ private:
     string name;
     vector<Fone> fones;    
 
-    bool numeroRepetido(Fone fone) {
+    bool numeroRepetido(Fone fone) { //Verificar se o número já existe
         for (int i = 0; i < (int)this->fones.size(); i++) {
             if ((this->fones[i].getId() == fone.getId()) && (this->fones[i].getNumero() == fone.getNumero())) {
                 return true;
@@ -68,7 +71,7 @@ public:
         name{name} {
     }
 
-    void addFone(Fone fone) {
+    void addFone(Fone fone) { //Adicionar numero
         if (fone.validar != nullptr) {
             if (numeroRepetido(fone)){
                 cout << "Numero repetido" << endl;
@@ -81,7 +84,7 @@ public:
         }
     }
 
-    void removerFone(int indice){
+    void removerFone(int indice){ //Remover um numero
         if (indice < 0 || indice >= (int)this->fones.size()) {
             return;
         }
@@ -90,6 +93,7 @@ public:
         return;
     }
 
+    //Getters
     vector<Fone> getFones(){
         return this->fones;
     }
@@ -98,6 +102,7 @@ public:
         return this->name;
     }
 
+    //Friend (Operador de saída)
     friend ostream& operator<<(ostream& os, Contato& contato) {
         os << contato.getNome() << " ";
         for (int i = 0; i < (int)contato.fones.size(); i++) {
@@ -121,7 +126,7 @@ private:
         return -1;
     }
 
-    bool existe(string name) {
+    bool existe(string name) { //Verifica se existe pelo nome
         for (int i = 0; i < (int)this->contatos.size(); i++) {
             if (this->contatos[i].getNome() == name) {
                 return true;
@@ -130,7 +135,7 @@ private:
         return false;
     }
 
-    bool EncontrarFone(vector<Fone> fones, string pattern) {
+    bool EncontrarFone(vector<Fone> fones, string pattern) { //Procura por um numero
         for (int i = 0; i < (int)fones.size(); i++) {
             if (fones[i].getNumero().find(pattern) != string::npos) {
                 return true;
@@ -161,7 +166,7 @@ public:
         }
     }
 
-    void removerFone(string name, int indice) { //Remover um fone de um contato
+    void removerFone(string name, int indice) { //Remover um contato por nome e indice
         int posicao = encontrarPos(name);
         if(posicao != -1) {
             this->contatos[posicao].removerFone(indice);
@@ -171,7 +176,7 @@ public:
         return;
     }
 
-    void removerContato(string name) { //Remover um contato
+    void removerContato(string name) { 
         int posicao = encontrarPos(name);
         if(posicao != -1) {
             this->contatos.erase(contatos.begin() + posicao);
@@ -182,12 +187,12 @@ public:
         return;
     }
 
-    vector<Contato> search(string pattern) {
-        vector<Contato> resultado;
+    vector<Contato> search(string pattern) { //Procura contato
+        vector<Contato> resultado; // Ao achar armazena no vetor resultado
         for (int i = 0; i < (int)contatos.size(); i++) { //Percorre todos os contatos procurando pelo nome
             if (contatos[i].getNome().find(pattern) != string::npos) {
-                resultado.push_back(contatos[i]);
-                cout << resultado[i] << endl;
+                resultado.push_back(contatos[i]); //Adiciona contato
+                cout << resultado[i] << endl; //Armazena no vetor
             }
         }
         for (int i = 0; i < (int)contatos.size(); i++) {
@@ -203,6 +208,7 @@ public:
         return resultado;
     }
 
+    //Friend (Operador de saída)
     friend ostream& operator<<(ostream& os, const Agenda& agenda) {
         if ((int)agenda.contatos.size() == 0) {
             os << "Agenda vazia" << endl;
@@ -225,10 +231,10 @@ int main() {
     Contato Fred{"Fred"};
     Contato Maria{"Maria"};
 
-    Joao.addFone(Fone("tim", "99943-4343"));
-    Fred.addFone(Fone("tim", "99909-1211"));
-    Fred.addFone(Fone("vivo", "99999-9999"));
-    Maria.addFone(Fone("oi", "99943-4343"));
+    Joao.addFone(Fone("tim", "9994"));
+    Fred.addFone(Fone("tim", "9990"));
+    Fred.addFone(Fone("vivo", "8999"));
+    Maria.addFone(Fone("oi", "8785"));
 
     cout << "Lista" << endl;
     agenda.addFone(Joao);
@@ -237,11 +243,10 @@ int main() {
 
     cout << agenda << endl;
 
-    cout << "Remover contato" << endl;
     agenda.removerContato("Maria");
     agenda.removerContato("Fred, 1");
 
     cout << "Procurar contatos" << endl;
-    agenda.search("999");
+    agenda.search("Fred");
     cout << agenda << endl;
 }
