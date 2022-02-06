@@ -13,38 +13,40 @@ protected:
     string type; //CC ou CP
 
 public:
-    Conta(int id, string clientId = "") :id(id), clientId(clientId) {
+    Conta(int id, string clientId = "") :id(id), clientId(clientId) { //Construtor da Conta
     }
 
-    virtual void monthupdate() = 0;
+    virtual void monthupdate() = 0; //Mês update
 
-    virtual void saque(float valor){
-        if(valor <= 0){
-            cout << "Valor invalido" << endl;
+    virtual void saque(float valor){ //Saque
+        if(valor <= 0){ //Valor da conta for menor que 0
+            cout << "Valor invalido" << endl; 
         }
 
-        if(valor > this->balance){
+        if(valor > this->balance){ 
             cout << "Saldo insuficiente" << endl;
-        }            
+        } else       
 
         cout << "Saque de R$ " << valor << " realizado com sucesso!" << endl;
-        this->balance -= valor;
+        this->balance -= valor; //Decrementa o saldo da conta
      }
 
-    virtual void deposito(float valor){
-        if(valor <= 0){
+    virtual void deposito(float valor){ //Deposito
+        if(valor <= 0){ //Valor do deposito for menor que 0
             cout << "Valor invalido" << endl;
         }
     
         cout << "Deposito de R$ " << valor << " realizado com sucesso!" << endl;
-        this->balance += valor;
+        this->balance += valor;//Incrementa o saldo da conta
      }
 
-    virtual void transferir(shared_ptr<Conta> other ,float valor){
+    virtual void transferir(shared_ptr<Conta> other ,float valor){ //Transferência
         this->saque(valor);
         other->deposito(valor);
     }
 
+    //Metodos
+    //Getters
     virtual int getId() {
         return this->id;
     }
@@ -61,43 +63,48 @@ public:
         return this->type;
     }
 
+    //Friend (Operador de saída).
     friend ostream& operator<<(ostream& os, Conta& conta) {
         os << conta.getId() << ": " << conta.getClientId() << ": " << conta.getBalance() << ": " << conta.getType() << endl;
     }
 };
 
+//Herança
 class ChecandoConta : public Conta {
-    public:
-    ChecandoConta(int id, string clientId) : Conta(id, clientId) {
-        this->type = "CC";
+public:
+    ChecandoConta(int id, string clientId) : Conta(id, clientId) { //Construtor do Checando Conta
+        this->type = "CC"; //Inicializa a conta com "CC" (Conta corrente).
     }
     
-    virtual void monthupdate(){
+    virtual void monthupdate(){ //Update mensal
         this->balance -= 20;
     }
 };
 
+//Herança
 class SalvandoConta : public Conta {
 public:
-    SalvandoConta(int id, string clientId) : Conta{id, clientId} {
+    SalvandoConta(int id, string clientId) : Conta{id, clientId} { //Construtor do Salvando Conta
     }
     
-    virtual void monthupdate(){
-        this->balance += this->balance * 0.1;
+    virtual void monthupdate(){ //Update mensal
+        this->balance += this->balance * 0.1; //Rende 1% do saldo
     }
 };
 
 class Cliente {
 private:
     string clientId;
-    vector<shared_ptr<Conta>> contas;
+    vector<shared_ptr<Conta>> contas; //Vetor de contas
 
 public:
-    Cliente(string clientId = "") : clientId{clientId} {
+    Cliente(string clientId = "") : clientId{clientId} { //Construtor de Cliente
     }
-        
-    virtual void addConta(const shared_ptr<Conta> &conta){
-        this->contas.push_back(conta);
+
+    //Metodos
+    //Getters e Setters    
+    virtual void addConta(const shared_ptr<Conta> &conta){ //Adiciona conta
+        this->contas.push_back(conta);//No final do vetor
     }
 
     virtual string getClientId() {
@@ -116,6 +123,7 @@ public:
         this->contas = contas;
     }
 
+    //Friend (Operador de saída).
     friend ostream& operator<<(ostream& os, Cliente& cliente) {
         os << cliente.clientId << " [ " << endl;
         for (int i = 0; i < (int)cliente.contas.size(); i++){
@@ -128,65 +136,76 @@ public:
 
 class Agencia {
 private:
-    map<string, shared_ptr<Cliente>> clientes;
-    map<int, shared_ptr<Conta>> contas;
+    map<string, shared_ptr<Cliente>> clientes; //Map de clientes da agencia
+    map<int, shared_ptr<Conta>> contas; //Map de contas da agencia
     int nexContaId{0};
 
-    virtual shared_ptr<Conta> getConta(int id){
-        auto it = this->contas.find(id);
-        if(it == this->contas.end()){
+    virtual shared_ptr<Conta> getConta(int id){ //Procura conta pelo Id
+        auto it = this->contas.find(id);//Achou
+        if(it == this->contas.end()){ //Não achou
             cout << "Conta nao registrada" << endl;
         }
         return it->second;
     }
 
+    bool procurarCliente(string cliente) { //Procura cliente 
+        auto it = clientes.find(cliente); //Cliente achado
+        if(it == clientes.end()){ //Caso não achado
+            cout << "Cliente nao registrado" << endl;
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 public:
     Agencia(){};
 
-    virtual void addConta(string clientId){
-        auto it = this->clientes.find(clientId);
-        if(it != this->clientes.end()){
-            cout << "Cliente registrado" << endl;
+    virtual void addConta(string clientId){ //Adiciona conta pelo ID do cliente
+        auto it = this->clientes.find(clientId);//Procura conta do cliente
+        if(it != this->clientes.end()){//Achado
+            cout << "Cliente ja registrado" << endl;
         }
         
-        Cliente c{clientId};
+        Cliente c{clientId}; //Cria cliente
 
-        SalvandoConta sa{this->nexContaId, clientId};
-        c.addConta(make_shared<SalvandoConta>(sa));
+        SalvandoConta sa{this->nexContaId, clientId}; //Cria conta poupança
+        c.addConta(make_shared<SalvandoConta>(sa)); //Adiciona conta como poupança
         this->contas[this->nexContaId] = make_shared<SalvandoConta>(sa);
 
         this->nexContaId++;
 
-        ChecandoConta cc{this->nexContaId, clientId};
-        c.addConta(make_shared<ChecandoConta>(cc));
+        ChecandoConta cc{this->nexContaId, clientId}; //Cria conta corrente
+        c.addConta(make_shared<ChecandoConta>(cc)); //Adiciona conta como corrente
         this->contas[this->nexContaId] = make_shared<ChecandoConta>(cc);
 
         this->clientes[clientId] = make_shared<Cliente>(c);
         this->nexContaId++;
     }
 
-    virtual void saque(int id, float valor){
+    virtual void saque(int id, float valor){ //Realiza saque
         shared_ptr<Conta> conta{getConta(id)};
         conta->saque(valor);
     }
 
-    virtual void deposito(int id, float valor){
+    virtual void deposito(int id, float valor){ //Realiza transferência
         shared_ptr<Conta> conta{getConta(id)};
         conta->deposito(valor);
     }
 
-    virtual void transferir(int id, int id2, float valor){
+    virtual void transferir(int id, int id2, float valor){ //Realiza transferência
         shared_ptr<Conta> conta{getConta(id)};
         shared_ptr<Conta> conta2{getConta(id2)};
         conta->transferir(conta2, valor);
     }
 
-    virtual void monthupdate(){
+    virtual void monthupdate(){ //Update mensal
         for(auto it = this->contas.begin(); it != this->contas.end(); it++){
             it->second->monthupdate();
         }
     }
 
+    //Friend (Operador de saída).
     friend ostream &operator<<(ostream &os, Agencia &agencia) {
         os << "Clientes: " << endl;
         for(auto it = agencia.clientes.begin(); it != agencia.clientes.end(); it++){
