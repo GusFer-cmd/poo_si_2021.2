@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<int> procurar_valor(vector<int>& v){
+int procurar_valor(vector<int> v){
 
 int i, num, pos = 0, encontrado = 0;
 
@@ -21,6 +21,7 @@ int i, num, pos = 0, encontrado = 0;
         cout << "Numero existente aparece na posicao " << pos << endl;
     } else {
         cout << "Numero nao existente" << endl;
+        return -1;
     }
 }
 

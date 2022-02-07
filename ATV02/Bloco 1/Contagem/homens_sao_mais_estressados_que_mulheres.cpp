@@ -3,49 +3,44 @@
 
 using namespace std;
 
-float calcular_stress_medioH(vector<float> v, int size){
+float calcular_stress_medioH(vector<int> v){
     
-float somaH = 0;
+float somaH = 0, mediaH = 0;
 int i;
-    for (i = 0; i < size; i++) {
+    for (i = 0; i < v.size(); i++) {
         if (v[i] > 0) {
             somaH += v[i];
+            mediaH = somaH / v.size();
         }
     }
-return somaH / size;
+return mediaH;
 }
 
-float calcular_stress_medioM(vector<float> v, int size){
+float calcular_stress_medioM(vector<int> v){
 
-float somaM = 0;
+float somaM = 0, mediaM = 0;
 int i;
-    for (i = 0; i < size; i++) {
-        if (v[i] < 0) {
+    for (i = 0; i < v.size(); i++) {
+        if (v[ i ] < 0) {
             somaM += v[i];
+            mediaM = somaM / v.size();
         }
     }
-return somaM / size;
+return mediaM;
 }
 
 int main(){
 
-    int tam = 0;
-    cout << "Digite o tamanho do vetor: " << endl;
-    cin >> tam;
-
-    vector<float> v{};
-    int a;
-
-    for (int i = 0; i < tam; i++) {
+    vector<int> v(6);
+    for (int i = 0; i < 6; i++){
         cout << "Digite um valor: " << endl;
-        cin >> a;
-        v.push_back(a);
+        cin >> v[ i ];
     }
 
-    float mediaH = calcular_stress_medioH(v, tam);
+    float mediaH = calcular_stress_medioH(v);
     cout << "A media de stress dos homens: " << mediaH << endl;
 
-    float mediaM = calcular_stress_medioM(v, tam);
+    float mediaM = calcular_stress_medioM(v);
     cout << "A media de stress das mulheres: " << mediaM << endl;
 
     return 0;

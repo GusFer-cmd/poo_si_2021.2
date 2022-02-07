@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int ordenar(vector<int>& v){
+void ordenar(vector<int> v){
 
 int i;
 
@@ -18,14 +18,14 @@ int i;
 
 int main(){
 
-    vector<int> v(3);
-    for (int i = 0; i < 3; i++) {
+    vector<int> v(5);
+    for (int i = 0; i < 5; i++) {
         cout << "Digite um valor: " << endl;
-        cin >> v[i];
+        cin >> v[ i ];
     }
     
     ordenar(v);
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 5; i++) {
         cout << v[i] << " ";
     }
     

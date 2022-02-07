@@ -3,12 +3,12 @@
 
 using namespace std;
 
-int procurar_menor(vector<int> v, int size){
+int procurar_menor(vector<int> v){
 
-int i, menor = -1;
+int i, menor = v[ 0 ];
 
-    for (i = 0; i < size; i++){
-        if ( menor == -1 || v[ i ] < menor ){
+    for (i = 0; i < v.size(); i++){
+        if ( menor == v[ 0 ] || v[ i ] < menor ){
             menor = v[ i ];
         }
     }
@@ -18,20 +18,13 @@ int i, menor = -1;
 
 int main(){
 
-    int tam = 0;
-    cout << "Digite o tamanho do vetor: " << endl;
-    cin >> tam;
-
-    vector<int> v{};
-    int a;
-
-    for(int i = 0; i < tam; i++){
+    vector<int> v(6);
+    for (int i = 0; i < 6; i++){
         cout << "Digite um valor: " << endl;
-        cin >> a;
-        v.push_back(a);
+        cin >> v[ i ];
     }
 
-    procurar_menor(v, tam);
+    procurar_menor(v);
 
     return 0;
 }

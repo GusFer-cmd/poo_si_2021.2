@@ -3,14 +3,14 @@
 
 using namespace std;
 
-int procurar_menor_pos_apartir(vector<int> v, int size){
+int procurar_menor_pos_apartir(vector<int> v){
 
 int i, num, PMPA, encontrado = 0, contador = 0;
 
     cout << "Digite um numero que voce deseja procurar: " << endl;
     cin >> num;
 
-        for (i = 0; i < size; i++) {
+        for (i = 0; i < v.size(); i++) {
             if ( v[ i ] == num) {
                 encontrado = 1;
                 PMPA = i + 2;
@@ -27,20 +27,13 @@ int i, num, PMPA, encontrado = 0, contador = 0;
 
 int main(){
 
-    int tam = 0;
-    cout << "Digite o tamanho do vetor: " << endl;
-    cin >> tam;
-
-    vector<int> v{};
-    int a;
-
-    for(int i = 0; i < tam; i++){
+    vector<int> v(6);
+    for(int i = 0; i < 6; i++){
         cout << "Digite um valor: " << endl;
-        cin >> a;
-        v.push_back(a);
+        cin >> v[ i ];
     }
 
-    procurar_menor_pos_apartir(v, tam);
+    procurar_menor_pos_apartir(v);
 
     return 0;
 }

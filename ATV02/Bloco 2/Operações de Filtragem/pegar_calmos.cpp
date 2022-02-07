@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int pegar_calmos(vector<int>& v){
+vector<int> pegar_calmos(const vector<int>& v){
 
 int i;
     for (i = 0; i < v.size(); i++ ) {

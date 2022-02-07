@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int pegar_homens(vector<int>& v){
+vector<int> pegar_homens(const vector<int>& v){
 
 int i;
 

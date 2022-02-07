@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int pegar_mulheres_calmas(vector<int>& v){
+vector<int> pegar_mulheres_calmas(const vector<int>& v){
     
 int i;
     for (i = 0; i < v.size(); i++){

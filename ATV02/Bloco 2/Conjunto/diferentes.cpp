@@ -9,7 +9,7 @@ vector<int> diferentes(const vector<int>&v){
     bool dif = false;
     for (int i = 0; i < v.size(); i++){
         for (int j = 0; j < rep.size(); j++){
-            if (v[i] == rep[j] || v[i] * -1 == rep[j]){
+            if (v[ i ] == rep[j] || v[ i ] * -1 == rep[j]){
                 dif = true;
                 break;
             }
@@ -18,10 +18,10 @@ vector<int> diferentes(const vector<int>&v){
             dif = false;
             continue;    
         } else {
-            if (v[i] < 0) {
-                rep.push_back(v[i] * -1);
+            if (v[ i ] < 0) {
+                rep.push_back(v[ i ] * -1);
             } else {
-                rep.push_back(v[i]);
+                rep.push_back(v[ i ]);
             }
         }
     }

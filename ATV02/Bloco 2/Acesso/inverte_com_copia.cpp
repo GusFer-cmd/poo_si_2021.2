@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int inverte_com_copia(vector<int> v, int size){
+void inverte_com_copia(vector<int> v){
 int i, j, vetI[ i ];
 
     cout << "Vetor invertido : ";
@@ -16,12 +16,12 @@ int i, j, vetI[ i ];
 int main(){
 
     vector<int> v(6);
-    for (int i = 0; i < v.size(); i++) {
+    for (int i = 0; i < 6; i++) {
         cout << "Digite um valor: " << endl;
         cin >> v[ i ];
     }
     
-    inverte_com_copia(v, 6);
+    inverte_com_copia(v);
     
     return 0;
 }

@@ -3,9 +3,10 @@
 
 using namespace std;
 
-vector<int> existe(vector<int>& v){
+bool existe(vector<int> v){
 
-int i, num, encontrado = 0;
+int i, num;
+bool encontrado = 0;
 
     cout << "Digite um valor que voce deseja verificar se existe na fila: " << endl;
     cin >> num;

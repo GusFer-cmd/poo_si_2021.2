@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void exclusivos(vector<int>& v){
+void exclusivos(const vector<int>& v){
 
 int i, j;
 
@@ -11,7 +11,7 @@ int i, j;
     for (i = 0; i < v.size(); i++) {
         exist = false;
         for (j = 0; j < i; j++) {
-            if(v[i] == v[j]){
+            if(v[ i ] == v[ j ]){
                 exist = true;
                 break;
             }     

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<int> abandonados(vector<int>& v){
+vector<int> abandonados(const vector<int>& v){
 
 vector<int> vJ{};
 vector<int> vI{};

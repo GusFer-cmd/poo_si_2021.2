@@ -3,11 +3,11 @@
 
 using namespace std;
 
-int procurar_melhor_se(vector<int> v, int size){
+int procurar_melhor_se(vector<int> v){
 
-int i, procura = v[0], pos = 0;
+int i, procura = v[ 0 ], pos = 0;
 
-        for (i = 0; i < size; i++) {
+        for (i = 0; i < v.size(); i++) {
             if( v[ i ] < procura && v[ i ] > 0 ) {
                 procura = v[ i ];
                 pos = i + 1;  
@@ -18,20 +18,13 @@ int i, procura = v[0], pos = 0;
 
 int main(){
 
-    int tam = 0;
-    cout << "Digite o tamanho do vetor: " << endl;
-    cin >> tam;
-
-    vector<int> v{};
-    int a;
-
-    for(int i = 0; i < tam; i++){
+    vector<int> v(6);
+    for (int i = 0; i < 6; i++){
         cout << "Digite um valor: " << endl;
-        cin >> a;
-        v.push_back(a);
+        cin >> v[ i ];
     }
     
-    procurar_melhor_se(v, tam);
+    procurar_melhor_se(v);
 
     return 0;
 }

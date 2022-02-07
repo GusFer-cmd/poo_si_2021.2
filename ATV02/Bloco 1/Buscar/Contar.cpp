@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<int> contar(vector<int>& v){
+int contar(vector<int> v){
 
 int num, qtd = 0, i = 0;
 
