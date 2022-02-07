@@ -4,12 +4,12 @@
 
 using namespace std;
 
-void embaralhar(vector<int> v) {
-    for (int i = 0; i < v.size(); i++) {
-        int j = rand() % v.size();
-        swap(v[i], v[j]);
+void embaralhar(vector<int> v) { //Função que recebe como parametro um vetor
+    for (int i = 0; i < v.size(); i++) { //Laço
+        int j = rand() % v.size(); //Randomiza a posição do vetor
+        swap(v[i], v[j]); //Troca os valores 
     }
-        for (int i = 0; i < v.size(); i++) {
+        for (int i = 0; i < v.size(); i++) { //Impressão
         cout << v[i] << " ";
         }
     cout << endl;
@@ -17,13 +17,13 @@ void embaralhar(vector<int> v) {
   
 int main() 
 {
-    vector<int> v(5);
-    for (int i = 0; i < 5; i++) {
+    vector<int> v(5); //Inicialização do vetor de 5 posições
+    for (int i = 0; i < v.size(); i++) {
         cout << "Digite um valor: " << endl;
-        cin >> v[i];
+        cin >> v[i]; //Recebe o valor digitado
     }
     
-    embaralhar(v);
+    embaralhar(v); //Chamada da função
 
     return 0;
 }

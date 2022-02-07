@@ -13,8 +13,8 @@ void ordenar(vector<int>& v){
         for(i = 0; i < v.size() - 1; i++){
             if(v[ i ] > v[ i + 1 ]){ //Caso elemento seja maior realiza a troca
                 int aux = v[ i + 1 ];//Armazena no aux para não perder o valor
-                v[ i + 1 ] = v[ i ];
-                v[ i ] = aux;
+                v[ i + 1 ] = v[ i ]; //Troca os valores
+                v[ i ] = aux; 
             }
         }
     }   
@@ -23,15 +23,15 @@ void ordenar(vector<int>& v){
 int main(){
 
     vector<int> v(5);
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < v.size(); i++) { //Laço
         cout << "Digite um valor: " << endl;
-        cin >> v[ i ];
+        cin >> v[ i ]; //Recebe o valor digitado
     }
 
     cout << "Vetor ordenado: ";
-    ordenar(v);
-    for (int i = 0; i < 5; i++) {
-        cout << v[ i ] << " ";
+    ordenar(v); //Chamada da função
+    for (int i = 0; i < v.size(); i++) { //Impressão
+        cout << v[ i ] << " "; 
     }
     
     return 0;

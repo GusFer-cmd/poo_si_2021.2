@@ -3,17 +3,17 @@
 
 using namespace std;
 
-bool existe(vector<int> v){
+bool existe(vector<int> v){ //Booleando existir 
 
-int i, num;
+int i, num; //Declaração de variáveis
 bool encontrado = 0;
 
     cout << "Digite um valor que voce deseja verificar se existe na fila: " << endl;
     cin >> num;
 
-    for(i = 0; i < v.size(); i++){
-        if(num == v[ i ]){
-            encontrado = 1;
+    for(i = 0; i < v.size(); i++){ //Laço que percorre o vetor
+        if(num == v[ i ]){ //Condição que verifica se o numero digitado é igual ao numero da posição do vetor
+            encontrado = 1; //Se o numero digitado for igual ao numero da posição do vetor, o valor de encontrado recebe 1
         }
     }
 
@@ -26,13 +26,13 @@ bool encontrado = 0;
 
 int main(){
 
-    vector<int> v(6);
-    for (int i = 0; i < 6; i++){
+    vector<int> v(6); //Inicialização do vetor de 6 posições
+    for (int i = 0; i < v.size(); i++){ //Percorre o vetor
         cout << "Digite um valor: " << endl;
-        cin >> v[ i ];
+        cin >> v[ i ]; //Recebe o valor digitado
     }
 
-    existe(v);
+    existe(v); //Chamada da função existe
 
     return 0;
 }
