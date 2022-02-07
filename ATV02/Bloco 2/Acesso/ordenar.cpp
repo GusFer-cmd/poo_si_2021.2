@@ -1,42 +1,34 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-void ordenar( int vet[], int tam) {
+int ordenar(vector<int>& v){
 
 int i;
 
-    for(i = 0; i < tam - 1; i++) {
-        if(vet[ i ] > vet[ i + 1 ] ) {
-            int aux = vet[ i + 1 ]; //Auxiliar recebe o valor do vetor[ i + 1 ], (guardando o elemento.)
-            vet[ i + 1 ] = vet[ i ];
-            vet[ i ] = aux;
+    for(i = 0; i < v.size() - 1; i++) {
+        if(v[ i ] > v[ i + 1 ] ) {
+            int aux = v[ i + 1 ]; //Auxiliar recebe o valor do vetor[ i + 1 ], (guardando o elemento.)
+            v[ i + 1 ] = v[ i ];
+            v[ i ] = aux;
         }
     }  
 }
 
-void imprimir( int vet[], int tam) {
-    
-int i;  
+int main(){
 
-    cout << "Vetor ordenado: "; 
-    for(i = 0; i < tam; i++) {
-        cout << vet[ i ] << "  ";
-    }
-}
-
-int main()
-{
-
-int vetX[ 3 ], i;
-
-    for(i = 0; i < 3; i++) {
+    vector<int> v(3);
+    for (int i = 0; i < 3; i++) {
         cout << "Digite um valor: " << endl;
-        cin >> vetX[ i ];
+        cin >> v[i];
     }
+    
+    ordenar(v);
+    for (int i = 0; i < 3; i++) {
+        cout << v[i] << " ";
+    }
+    
+    return 0;
 
-    ordenar(vetX, 3);
-    imprimir(vetX, 3);
-
-return 0;
 }

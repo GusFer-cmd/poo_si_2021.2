@@ -1,36 +1,34 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int reverter_inplace( int vet[], int tam ) {
+int reverter_inplace(vector<int>& v){
 
-int j = tam - 1, i, aux;
+int j = v.size() - 1, i, aux;
 
-    for ( i = 0; i < tam/2; i++ ) {
-        aux = vet[ i ];
-        vet[ i ] = vet[ j ];
-        vet[ j ] = aux;
+    for(i = 0; i < v.size()/2; i++){
+        aux = v[i];
+        v[i] = v[j];
+        v[j] = aux;
         j--;
     }
         cout << "Vetor invertido: ";
         
-        for ( i = 0; i < tam; i++) {
-            cout << vet[ i ] << "  ";
+        for(i = 0; i < v.size(); i++){
+            cout << v[i] << "  ";
         }
+}
 
-} 
+int main(){
 
-int main()
-{
-
-int vetX[ 6 ], i;
-
-    for ( i = 0; i < 6; i++) {
+    vector<int> v(6);
+    for(int i = 0; i < v.size(); i++){
         cout << "Digite um valor: " << endl;
-        cin >> vetX[ i ];    
+        cin >> v[ i ];
     }
 
-    reverter_inplace( vetX, 6);
+    reverter_inplace(v);
 
-return 0;
+    return 0;
 }
