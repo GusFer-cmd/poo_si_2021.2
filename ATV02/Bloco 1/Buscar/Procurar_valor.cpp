@@ -3,43 +3,36 @@
 
 using namespace std;
 
-int procurar_valor(vector<int> v, int size){
+vector<int> procurar_valor(vector<int>& v){
 
-int i, num, Pos = 0, encontrado = 0;
+int i, num, pos = 0, encontrado = 0;
 
     cout << "Digite um numero que voce deseja procurar: " << endl;
     cin >> num;
 
-    for(i = 0; i < size; i++){
-        if(num == v[i]){
+    for(i = 0; i < v.size(); i++){
+        if(num == v[ i ]){
             encontrado = 1;
-            Pos = i + 1;
+            pos = i + 1;
         }
     }
 
-    if(encontrado == 0){
-        cout << "Numero nao existente" << endl;
+    if(encontrado == 1){
+        cout << "Numero existente aparece na posicao " << pos << endl;
     } else {
-        cout << "Numero existente aparece na posicao " << Pos << endl;
+        cout << "Numero nao existente" << endl;
     }
 }
 
 int main(){
 
-    int tam = 0;
-    cout << "Digite o tamanho do vetor: " << endl;
-    cin >> tam;
-
-    vector<int> v{};
-    int a;
-
-    for(int i = 0; i < tam; i++){
+    vector<int> v(6);
+    for (int i = 0; i < 6; i++){
         cout << "Digite um valor: " << endl;
-        cin >> a;
-        v.push_back(a);
+        cin >> v[ i ];
     }
 
-    procurar_valor(v, tam);
+    procurar_valor(v);
 
     return 0;
 }

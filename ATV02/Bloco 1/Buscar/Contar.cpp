@@ -3,15 +3,14 @@
 
 using namespace std;
 
-int contar(vector<int> v, int size){
+vector<int> contar(vector<int>& v){
 
-int num;
-int qtd = 0, i = 0;
+int num, qtd = 0, i = 0;
 
     cout << "Digite um valor que voce desejar verificar se existe na fila: " << endl;
     cin >> num;
 
-    while ( i <= size) {
+    while ( i <= v.size() ) {
         if( num == v[ i ] ) {
             qtd = qtd + 1;
         }
@@ -24,20 +23,13 @@ int qtd = 0, i = 0;
 
 int main(){
 
-    int tam = 0;
-    cout << "Digite o tamanho do vetor: " << endl;
-    cin >> tam;
-
-    vector<int> v{};
-    int a;
-
-    for(int i = 0; i < tam; i++){
+    vector<int> v(6);
+    for (int i = 0; i < 6; i++){
         cout << "Digite um valor: " << endl;
-        cin >> a;
-        v.push_back(a);
+        cin >> v[ i ];
     }
-    
-    contar(v, tam);
+
+    contar(v);
 
     return 0;
 }
