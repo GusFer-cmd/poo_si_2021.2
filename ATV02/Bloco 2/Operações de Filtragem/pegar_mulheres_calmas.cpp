@@ -1,29 +1,27 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int pegar_mulheres_calmas ( int vet[], int tam) {
-
+int pegar_mulheres_calmas(vector<int>& v){
+    
 int i;
-
-    for (i = 0; i < tam; i++ ) {
-        if(vet[ i ] < 0 && vet[ i ] >= - 10)
-        cout << vet[ i ] << endl;
+    for (i = 0; i < v.size(); i++){
+        if (v[ i ] < 0 && v[ i ] >= -10){
+            cout << v[ i ] << endl;
+        }
     }
-} 
+}
 
-int main() 
-{
+int main(){
 
-int vetX[ 6 ], i;
-
-    for (i = 0; i < 6; i++) {
+    vector<int> v(5);
+    for (int i = 0; i < 5; i++){
         cout << "Digite um valor: " << endl;
-        cin >> vetX[ i ];
+        cin >> v[ i ];
     }
-
     cout << " Mulheres calmas: " << endl;
-    pegar_mulheres_calmas(vetX, 6);
+    pegar_mulheres_calmas(v);
 
-return 0;
+    return 0;
 }
