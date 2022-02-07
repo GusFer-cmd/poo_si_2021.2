@@ -1,32 +1,36 @@
-#include <iostream> 
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-float calcular_stress_medio( int vet[], int tam) {
+float calcular_stress_medio(vector<float> v, int size){
 
-float soma = 0; 
+float soma = 0;
 int i;
-    
-    for ( i = 0; i < tam; i++ ) {
-        soma += vet[ i ];
+
+    for ( i = 0; i < size; i++ ) {
+        soma += v[ i ];
     }
 
-return soma / tam;
+return soma / size;
 }
 
-int main()
-{
+int main(){
 
-int vetX[ 5 ], i;
-float media; 
+    int tam = 0;
+    cout << "Digite o tamanho do vetor: " << endl;
+    cin >> tam;
 
-    for ( i = 0; i < 5; i++ ) {
-    cout << "Digite um valor: " << endl; 
-    cin >> vetX[ i ];
+    vector<float> v{};
+    int a;
+
+    for(int i = 0; i < tam; i++){
+    cout << "Digite um valor: " << endl;
+    cin >> a;
+    v.push_back(a);
     }
     
-    media = calcular_stress_medio(vetX, 5);
-    cout << "A media de stress: " << media << endl; 
+    cout << "A media de stress: " << calcular_stress_medio(v, tam) << endl;
 
-return 0;
+    return 0;
 }

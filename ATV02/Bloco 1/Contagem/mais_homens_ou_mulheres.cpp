@@ -1,58 +1,59 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-char mais_homem_ou_mulher(int vet[], int tam) {
+char mais_homem_ou_mulher(vector<int> v, int size){
 
-int homem = 0, mulher = 0, empate = 0;
-int i;
-    
-    for (i = 0; i < tam; i++) {
-        if ( vet[i] > 0) {
+int i, homem = 0, mulher = 0, empate = 0;
+
+    for (i = 0; i < size; i++) {
+        if ( v[i] > 0) {
             homem++;
-        } 
-        else if ( vet[i] < 0) {
+        } else if ( v[i] < 0) {
             mulher++;
         }
-
             if ( homem > mulher ) {
                 return 'H';
-            } 
-            else if ( homem < mulher) {
+            } else if ( homem < mulher) {
                 return 'M';
-            } 
-            else if ( homem == empate ) {
+            } else if ( homem == empate ) {
                 return 'E';
             }
     }
-} 
-
-float calcular_stress_medio( int vet[], int tam) {
-
-float soma = 0; 
-int i;
-    
-    for ( i = 0; i < tam; i++ ) {
-        soma += vet[ i ];
-    }
-    return soma / tam;
 }
 
-int main()
-{
+float calcular_stress_medio(vector<int> v, int size){
 
-int vetX[ 6 ], i;
-float media;
+float soma = 0;
+int i;
 
-    for (i = 0; i < 6; i++) {
-    cout << "Insira um valor: " << endl;
-    cin >> vetX[i];
+    for ( i = 0; i < size; i++ ) {
+        soma += v[ i ];
+    }
+    
+return soma / size;
+}
+
+int main(){
+
+    int tam = 0;
+    cout << "Digite o tamanho do vetor: " << endl;
+    cin >> tam;
+
+    vector<int> v{};
+    int a;
+
+    for(int i = 0; i < tam; i++){
+        cout << "Digite um valor: " << endl;
+        cin >> a;
+        v.push_back(a);
     }
 
-    media = calcular_stress_medio(vetX, 6);
+    float media = calcular_stress_medio(v, tam);
     cout << "A media de stress: " << media << endl; 
 
-    char HM = mais_homem_ou_mulher(vetX, 6);
+    char HM = mais_homem_ou_mulher(v, tam);
     cout << "Na fila existe mais: " << HM << endl;
 
 return 0;
