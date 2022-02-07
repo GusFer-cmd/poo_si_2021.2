@@ -1,40 +1,39 @@
-#include <iostream> 
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-void exclusivos( int vet[], int tam) {
+void exclusivos(vector<int>& v){
 
 int i, j;
 
     bool exist;
-    for (i = 0; i < tam; i++) {
+    for (i = 0; i < v.size(); i++) {
         exist = false;
         for (j = 0; j < i; j++) {
-            if(vet[i] == vet[j]){
+            if(v[i] == v[j]){
                 exist = true;
                 break;
             }     
         }    
         if(exist == false) {
-            cout << vet[ i ] << endl;
+            cout << v[ i ] << endl;
         }
     }
 }
 
-int main() 
-{
+int main(){
 
-int vetX[ 6 ], i;
-
-    for(i = 0; i < 6; i++) {
+    vector<int> v(6);
+    for (int i = 0; i < v.size(); i++) {
         cout << "Digite um valor: ";
-        cin >> vetX[i];
+        cin >> v[ i ];
     }
 
-    exclusivos(vetX, 6);
+    exclusivos(v);
     // 1 3 4 3 -2 -2 
     // 1 3 4 -2
 
+    return 0;
 
-return 0;
 }

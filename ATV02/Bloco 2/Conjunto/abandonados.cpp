@@ -1,41 +1,42 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int abandonados( int vet[], int tam) {
+vector<int> abandonados(vector<int>& v){
 
-int i, j;
+vector<int> vJ{};
+vector<int> vI{};
 
-    bool exist;
-    for (i = 0; i < tam; i++) {
-        exist = false;
-        for (j = 0; j < i; j++) {
-            if(vet[i] == vet[j]){
-                exist = true;
+bool found = false;
+    for(int i = 0; i < v.size(); i++){
+        for (int j = 0; j < vJ.size(); j++){
+            if (v[ i ] == vJ[ j ]){
+                found = true;
+                vI.push_back(v[i]);
                 break;
             }
-                if(vet[i] < 0){ //Laço para verificar os números negativos
-                    exist = true;
-                    break;
-                }     
-        }    
-        if(exist == true) {
-            cout << vet[ i ] << endl;
+        }
+    
+        if (found == true){
+            found = false;
+        } else{
+            vJ.push_back(v[i]);
         }
     }
+    return vI;
 }
 
-int main()
-{
+int main() {
 
-int vetX[ 6 ], i;
-
-    for( i = 0; i < 6; i++) {
-        cout << "Digite um valor: ";
-        cin >> vetX[i];
+    vector<int> v(7);
+    for (int i = 0; i < v.size(); i++) {
+        cout << "Digite um valor: " << endl;
+        cin >> v[ i ];
     }
 
-    abandonados(vetX, 6);
-
-return 0;
+    vector<int> aban = abandonados(v);
+    for (int i = 0; i < aban.size(); i++) {
+        cout << aban[ i ] << endl;
+    }
 }

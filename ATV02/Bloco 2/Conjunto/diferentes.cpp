@@ -33,12 +33,12 @@ int main(){
     vector<int> v(5);
     for (int i = 0; i < v.size(); i++) {
         cout << "Digite um valor: " << endl;
-        cin >> v[i];
+        cin >> v[ i ];
     }
     
     vector<int> rep = diferentes(v);
     for (int i = 0; i < rep.size(); i++){
-        cout << rep[i] << endl;
+        cout << rep[ i ] << endl;
     }
 
     // 1 -2 -2 3 5
