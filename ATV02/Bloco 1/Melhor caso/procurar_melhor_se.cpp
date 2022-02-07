@@ -1,33 +1,37 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int procurar_melhor_se ( int vet[], int tam) {
+int procurar_melhor_se(vector<int> v, int size){
 
-int procura = vet[ 0 ], pos = 0;
-int i;
+int i, procura = v[0], pos = 0;
 
-    for (i = 0; i < tam; i++) {
-        if( vet[ i ] < procura && vet[ i ] > 0 ) {
-            procura = vet[ i ];
-            pos = i + 1;  
+        for (i = 0; i < size; i++) {
+            if( v[ i ] < procura && v[ i ] > 0 ) {
+                procura = v[ i ];
+                pos = i + 1;  
+                }
             }
-        }
-
-        cout << " O homem menos extressado esta na posicao: " << pos << endl;
+            cout << "O homem menos extressado esta na posicao: " << pos << endl;
 }
 
-int main()
-{
+int main(){
 
-int vetX[ 5 ], i;
+    int tam = 0;
+    cout << "Digite o tamanho do vetor: " << endl;
+    cin >> tam;
 
-    for (i = 0; i < 5; i++) {
+    vector<int> v{};
+    int a;
+
+    for(int i = 0; i < tam; i++){
         cout << "Digite um valor: " << endl;
-        cin >> vetX[ i ];
+        cin >> a;
+        v.push_back(a);
     }
+    
+    procurar_melhor_se(v, tam);
 
-    procurar_melhor_se ( vetX, 5 );
-
-return 0;
+    return 0;
 }
