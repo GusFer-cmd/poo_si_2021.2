@@ -1,43 +1,46 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int procurar_valor_apartir( int vet[], int tam) {
+int procurar_valor_apartir(vector<int> v, int size){
 
-int i, num;
-int Pos = 0, encontrado = 0, contador = 0;
+int i, num, Pos = 0, encontrado = 0, contador = 0;
 
     cout << "Digite um numero que voce deseja procurar: " << endl;
-	cin >> num;
-	
-		for (int i = 0; i < tam; i++) {
-			if (vet[ i ] == num) {
-				encontrado = 1;
-				Pos = i + 1;
-            	contador++;
-        	}
-		}
-	        
-			if (encontrado == 0) {
-		        cout << "Numero nao existente" << endl;
-	        }
-	        else {
-		        cout << "Numero " << num << " aparece " << contador << "x no vetor." << " E sua proxima posicao: " << Pos << endl;
-	       	}
+    cin >> num;
+
+        for(i = 0; i < size; i++){
+            if(num == v[i]){
+                encontrado = 1;
+                Pos = i + 1;
+                contador++;
+            }
+        }
+
+        if(encontrado == 0){
+            cout << "Numero nao existente" << endl;
+        } else {
+            cout << "Numero " << num << " aparece " << contador << "x no vetor." << " E sua proxima posicao " << Pos << endl;
+        }
 }
 
-int main()
-{
+int main(){
 
-int vetX[ 5 ];
-int  i;
- 
-	for (int i = 0; i < 5; i++) {
-		cout << "Digite um valor: " << endl;
-		cin >> vetX[ i ];
-	}
-	
-	procurar_valor_apartir( vetX, 5 );
+    int tam = 0;
+    cout << "Digite o tamanho do vetor: " << endl;
+    cin >> tam;
 
-return 0;
+    vector<int> v{};
+    int a;
+
+    for(int i = 0; i < tam; i++){
+        cout << "Digite um valor: " << endl;
+        cin >> a;
+        v.push_back(a);
+    }
+
+    procurar_valor_apartir(v, tam);
+
+    return 0;
 }
