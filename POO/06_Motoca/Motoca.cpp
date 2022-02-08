@@ -13,11 +13,6 @@ struct Pessoa {
         nome{nome}, idade{idade} {
     }         
 
-    //Destrutor	
-    ~Pessoa() {
-    
-    }
-
     //Métodos
 
     //Getters
