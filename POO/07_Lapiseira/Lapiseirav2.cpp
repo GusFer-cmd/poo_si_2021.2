@@ -18,10 +18,6 @@ public:
         calibre{calibre}, tamanho{tamanho}, dureza{dureza} {
     }
 
-    //Destrutor
-    ~Grafite() {
-    }
-
     //Métodos
 
     //Possíveis casos de dureza no uso do grafite por folha
