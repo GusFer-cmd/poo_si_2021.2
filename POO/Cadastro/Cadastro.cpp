@@ -1,34 +1,53 @@
 #include <iostream>
-#include <map>
 #include <vector>
+#include <map>
 #include <memory>
 
 using namespace std;
 
-class Conta {
+class Conta{
 protected:
-    int id;
-    float balance{0};
-    string clientId;
+    string clienteId;
     string type; //CC ou CP
+    float saldo{0};
+    int id;
 
 public:
-    Conta(int id, string clientId = "") :id(id), clientId(clientId) { //Construtor da Conta
+    Conta(string clienteId = "", int id = -1 ) : 
+        clienteId(clienteId), id(id) {
     }
 
-    virtual void monthupdate() = 0; //Mês update
+    //Metodos
+    //Getters
+    int getId(){
+        return this->id;
+    }
+
+    float getSaldo(){
+        return this->saldo;
+    }
+
+    string getClienteId(){
+        return this->clienteId;
+    }
+
+    string getType(){
+        return this->type;
+    }
+
+    virtual void monthupdate () = 0;
 
     virtual void saque(float valor){ //Saque
         if(valor <= 0){ //Valor da conta for menor que 0
             cout << "Valor invalido" << endl; 
         }
 
-        if(valor > this->balance){ 
+        if(valor > this->saldo){ 
             cout << "Saldo insuficiente" << endl;
         } else       
 
         cout << "Saque de R$ " << valor << " realizado com sucesso!" << endl;
-        this->balance -= valor; //Decrementa o saldo da conta
+        this->saldo -= valor; //Decrementa o saldo da conta
      }
 
     virtual void deposito(float valor){ //Deposito
@@ -37,206 +56,222 @@ public:
         }
     
         cout << "Deposito de R$ " << valor << " realizado com sucesso!" << endl;
-        this->balance += valor;//Incrementa o saldo da conta
+        this->saldo += valor;//Incrementa o saldo da conta
      }
 
-    virtual void transferir(shared_ptr<Conta> other ,float valor){ //Transferência
-        this->saque(valor);
-        other->deposito(valor);
-    }
+    virtual void transferir(shared_ptr<Conta> outraConta ,float valor){ //Transferência
+        if (valor <= 0 || valor > this->saldo){ //Valor da transferência for menor ou maior que o limite
+            cout << "Valor invalido" << endl;
+        }
 
-    //Metodos
-    //Getters
-    virtual int getId() {
-        return this->id;
-    }
+        if (outraConta == nullptr){ //Se a conta for nula
+            cout << "Destinatario nao encontrado" << endl;
+        } else {
+            this->saldo -= valor; //Decrementa o saldo da conta origem
+            outraConta->saldo += valor; //Incrementa o saldo da conta destinatária
+            cout << "Transferencia de R$ " << valor << " realizada com sucesso!" << endl;
+        }
+    }     
 
-    virtual float getBalance() {
-        return this->balance;
-    }
-
-    virtual string getClientId() {
-        return this->clientId;
-    }
-
-    virtual string getType() {
-        return this->type;
-    }
-
-    //Friend (Operador de saída).
-    friend ostream& operator<<(ostream& os, Conta& conta) {
-        os << conta.getId() << ": " << conta.getClientId() << ": " << conta.getBalance() << ": " << conta.getType() << endl;
+    //Friend (Operador de saída)
+    friend ostream& operator<<(ostream& os, const Conta& conta){
+        os << conta.id << " : " << conta.clienteId << " : " << "R$" << conta.saldo << " : " << conta.type << endl;
+        return os;
     }
 };
 
 //Herança
-class ChecandoConta : public Conta {
+class ContaCorrente : public Conta{
 public:
-    ChecandoConta(int id, string clientId) : Conta(id, clientId) { //Construtor do Checando Conta
-        this->type = "CC"; //Inicializa a conta com "CC" (Conta corrente).
-    }
-    
-    virtual void monthupdate(){ //Update mensal
-        this->balance -= 20;
+    ContaCorrente(string clienteId, int id) : Conta(clienteId, id) { //Construtor da Conta Corrente
+        this->type = "CC"; //Tipo da conta
+    };
+
+    virtual void monthupdate(){
+        this->saldo -= 20; //Desconta 20 reais de taxa mensal
     }
 };
 
 //Herança
-class SalvandoConta : public Conta {
+class ContaPoupanca : public Conta{
 public:
-    SalvandoConta(int id, string clientId) : Conta{id, clientId} { //Construtor do Salvando Conta
+    ContaPoupanca(string clienteId, int id) : Conta(clienteId, id) { //Construtor da Conta Poupança
+        this->type = "CP"; //Tipo da conta
     }
-    
-    virtual void monthupdate(){ //Update mensal
-        this->balance += this->balance * 0.1; //Rende 1% do saldo
+
+    virtual void monthupdate(){
+        this->saldo += 0.01 * this->saldo; //Incrementa 1% do saldo
     }
 };
 
 class Cliente {
 private:
-    string clientId;
-    vector<shared_ptr<Conta>> contas; //Vetor de contas
-
+    string clienteId;
+    vector<shared_ptr<Conta>> contas;
 public:
-    Cliente(string clientId = "") : clientId{clientId} { //Construtor de Cliente
+    Cliente(string clienteId = " ") : clienteId(clienteId) { //Construtor de Cliente
     }
 
     //Metodos
-    //Getters e Setters    
-    virtual void addConta(const shared_ptr<Conta> &conta){ //Adiciona conta
-        this->contas.push_back(conta);//No final do vetor
+    void addConta(shared_ptr<Conta> conta){
+        this->contas.push_back(conta); //Adiciona a conta ao vetor de contas
     }
 
-    virtual string getClientId() {
-        return this->clientId;
+    //Getters e Setters
+    string getClienteId(){
+        return clienteId;
     }
 
-    virtual vector<shared_ptr<Conta>> getContas() {
-        return this->contas;
+    vector<shared_ptr<Conta>> getContas(){
+        return contas;
     }
 
-    virtual void setClientId(string newClientId) {
-        this->clientId = newClientId;
-    }
-
-    virtual void setContas(vector<shared_ptr<Conta>> contas) {
-        this->contas = contas;
+    void setClientId(string clienteId){
+        this->clienteId = clienteId;
     }
 
     //Friend (Operador de saída).
-    friend ostream& operator<<(ostream& os, Cliente& cliente) {
-        os << cliente.clientId << " [ " << endl;
-        for (int i = 0; i < (int)cliente.contas.size(); i++){
-            os << cliente.contas[i]->getClientId() << ((i+1 < (int)cliente.contas.size()) ? "," : "");
+    friend ostream& operator<<(ostream& os, const Cliente& cliente){
+        os << cliente.clienteId << endl;
+        for(auto conta : cliente.contas){ //Percorre o vetor de contas
+            os << *conta; //Imprime as contas
         }
-        os << " ]" << endl;
         return os;
     }
 };
 
-class Agencia {
+class Agencia{
 private:
-    map<string, shared_ptr<Cliente>> clientes; //Map de clientes da agencia
-    map<int, shared_ptr<Conta>> contas; //Map de contas da agencia
-    int nexContaId{0};
+    map<string, shared_ptr<Cliente>> clientes;
+    map<int, shared_ptr<Conta>> contas;
+    int nextAccountId{0};
 
-    virtual shared_ptr<Conta> getConta(int id){ //Procura conta pelo Id
-        auto it = this->contas.find(id);//Achou
-        if(it == this->contas.end()){ //Não achou
-            cout << "Conta nao registrada" << endl;
+    //Metodos
+    shared_ptr<Conta> getConta(int id){
+        auto it = this->contas.find(id); //Busca a conta pelo id
+        if(it == this->contas.end()){ //Se não encontrar a conta
+            cout << "Conta nao registrada no banco" << endl;
         }
-        return it->second;
+        return it->second; //Retorna a conta
     }
 
-    bool procurarCliente(string cliente) { //Procura cliente 
-        auto it = clientes.find(cliente); //Cliente achado
-        if(it == clientes.end()){ //Caso não achado
-            cout << "Cliente nao registrado" << endl;
+    bool validarCliente(string nome){  //Valida o cliente pelo nome
+        auto it = this->clientes.find(nome); //Busca o cliente pelo nome
+        if(it == this->clientes.end()){ //Se não encontrar o cliente
+            cout << "Cliente nao registrado no banco" << endl;
             return false;
-        } else {
-            return true;
         }
+        return true; //Retorna true se o cliente existir
+    }
+
+    bool validarConta(int id){ //Valida a conta pelo id
+        auto it = this->contas.find(id); //Busca a conta pelo id
+        if(it == this->contas.end()){ //Se não encontrar a conta
+            cout << "Conta nao registrada no banco" << endl;
+            return false;
+        }
+        return true; //Retorna true se a conta existir
     }
 
 public:
-    Agencia(){};
+    Agencia() {} //Construtor de inicialização da Agencia
 
-    virtual void addConta(string clientId){ //Adiciona conta pelo ID do cliente
-        auto it = this->clientes.find(clientId);//Procura conta do cliente
-        if(it != this->clientes.end()){//Achado
-            cout << "Cliente ja registrado" << endl;
-        }
+    void addCliente(string nome){
+        if(validarCliente(nome)){ //Se o cliente já existir
+            cout << "Cliente ja existe" << endl;
+        } else {
+            Cliente cliente(nome); //Cria um cliente
+            ContaCorrente contaCorrente(nome, nextAccountId); //Cria uma conta corrente
+            ContaPoupanca contaPoupanca(nome, nextAccountId); //Cria uma conta poupança
+
+            cliente.addConta(make_shared<ContaCorrente>(contaCorrente)); //Adiciona a conta corrente ao vetor de contas do cliente
+            cliente.addConta(make_shared<ContaPoupanca>(contaPoupanca)); //Adiciona a conta poupança ao vetor de contas do cliente
         
-        Cliente c{clientId}; //Cria cliente
-
-        SalvandoConta sa{this->nexContaId, clientId}; //Cria conta poupança
-        c.addConta(make_shared<SalvandoConta>(sa)); //Adiciona conta como poupança
-        this->contas[this->nexContaId] = make_shared<SalvandoConta>(sa);
-
-        this->nexContaId++;
-
-        ChecandoConta cc{this->nexContaId, clientId}; //Cria conta corrente
-        c.addConta(make_shared<ChecandoConta>(cc)); //Adiciona conta como corrente
-        this->contas[this->nexContaId] = make_shared<ChecandoConta>(cc);
-
-        this->clientes[clientId] = make_shared<Cliente>(c);
-        this->nexContaId++;
+            this->clientes[nome] = make_shared<Cliente>(cliente); //Adiciona o cliente ao map de clientes
+            this->contas[nextAccountId] = make_shared<ContaCorrente>(contaCorrente); //Adiciona a conta corrente ao map de contas
+            this->contas[nextAccountId + 1] = make_shared<ContaPoupanca>(contaPoupanca); //Adiciona a conta poupança ao map de contas
+            nextAccountId ++; //Incrementa o id da conta
+        }
     }
 
-    virtual void saque(int id, float valor){ //Realiza saque
-        shared_ptr<Conta> conta{getConta(id)};
-        conta->saque(valor);
+    void saque(int id, float valor){
+        if(validarConta(id) && valor > 0){
+            this->getConta(id)->saque(valor); //Chama o metodo saque da conta
+        } else {
+            cout << "Saque nao realizado" << endl;
+        }
     }
 
-    virtual void deposito(int id, float valor){ //Realiza transferência
-        shared_ptr<Conta> conta{getConta(id)};
-        conta->deposito(valor);
+    void deposito(int id, float valor){
+        if(validarConta(id)){
+            this->getConta(id)->deposito(valor); //Chama o metodo deposito da conta
+        } else {
+            cout << "Deposito nao realizado" << endl;
+        }
     }
 
-    virtual void transferir(int id, int id2, float valor){ //Realiza transferência
-        shared_ptr<Conta> conta{getConta(id)};
-        shared_ptr<Conta> conta2{getConta(id2)};
-        conta->transferir(conta2, valor);
+    void transferencia(int idConta, int idOutraConta, float valor){
+        if(validarConta(idConta) && validarConta(idOutraConta) && valor > 0){
+            this->getConta(idConta)->transferir(this->getConta(idOutraConta), valor); //Chama o metodo transferencia da conta
+        } else {
+            cout << "Transferencia nao realizada" << endl;
+        }
     }
 
-    virtual void monthupdate(){ //Update mensal
-        for(auto it = this->contas.begin(); it != this->contas.end(); it++){
-            it->second->monthupdate();
+    void monthupdate(){
+        for(auto conta : this->contas){ //Percorre o map de contas
+            conta.second->monthupdate(); //Chama o metodo monthupdate da conta
         }
     }
 
     //Friend (Operador de saída).
-    friend ostream &operator<<(ostream &os, Agencia &agencia) {
-        os << "Clientes: " << endl;
-        for(auto it = agencia.clientes.begin(); it != agencia.clientes.end(); it++){
-            os << *it->second;
+    friend ostream& operator<<(ostream& os, Agencia& agencia){
+    os << "Contas: \n";
+        for(auto conta : agencia.contas){ //Percorre o map de contas
+            os << *conta.second; //Imprime as contas
+            cout << "-----" << endl;
         }
-            os << "Contas: " << endl;
-            for(auto it = agencia.contas.begin(); it != agencia.contas.end(); it++){
-                os << *it->second;
-            }
-            return os;
+    return os;
     }
 };
 
 int main() {
 
-    Agencia banco;
-    banco.addConta("Peter");
-    banco.addConta("Gustavo");
-    banco.addConta("Maria");
-    cout << banco << endl;
+    Agencia agencia;
 
-    banco.deposito(0, 100);
-    banco.deposito(1, 200);
-    banco.deposito(2, 300);
-    banco.saque(1, 50);
-    cout << banco << endl;
+    agencia.addCliente("Gustavo");
+    agencia.addCliente("Lucas");
+    agencia.addCliente("Guilerme");
 
-    banco.transferir(0, 2, 50);
-    cout << banco << endl;
 
-    banco.monthupdate();
+    agencia.deposito(0, 100);
+    agencia.deposito(1, 150);
+    agencia.deposito(2, 200);
 
-    cout << banco << endl;
+    cout << agencia << endl;
+    
+    agencia.saque(0, 50);
+    agencia.saque(1, 15);
+    agencia.saque(2, 100);
+
+    cout << agencia;
+
+    agencia.transferencia(0, 1, 100);
+    agencia.transferencia(1, 2, 50);
+    agencia.transferencia(2, 0, 100);
+
+    cout << agencia;
+
+    return 0;
+
+
+
+
+
+
+
+
+
+
+
 }

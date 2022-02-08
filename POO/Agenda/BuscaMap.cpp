@@ -72,8 +72,8 @@ public:
     }
 
     void addFone(Fone fone) { //Adicionar numero
-        if (fone.validar != nullptr) { 
-            if (numeroRepetido(fone) == 1){
+        if (fone.validar != nullptr) { //Verifica se o numero valido é diferente de null
+            if (numeroRepetido(fone) == 1){ //Se o numero já existe == 1
                 cout << "Numero repetido" << endl;
                 return;
             }
@@ -93,7 +93,6 @@ public:
         return;
     }
 
-    //Metodos
     //Getters
     vector<Fone> getFones(){
         return this->fones;
@@ -104,11 +103,11 @@ public:
     }
 
     //Friend (Operador de saída)
-    friend ostream& operator<<(ostream& os, Contato& contato) {
-        os << contato.getNome() << " ";
+    friend ostream& operator<<(ostream& os, const Contato& contato) {
+        os << contato.name << " ";
         for (int i = 0; i < (int)contato.fones.size(); i++) {
             auto fone = contato.fones[i];
-            os << "[" << i << ":" << fone << endl;
+            os << "[" << i << ":" << fone;
         }
         return os;
     }
@@ -122,26 +121,21 @@ public:
     Agenda() {}; //Construtor de inicialização da agenda
 
      //Getters  
-    Contato getContato(string nome) {
+    Contato getContato(string nome) { //Retorna o contato
         return this->contatos[nome];
     }
     
     void addContato(Contato contato) { //Adicionar contato
         auto it = contatos.find(contato.getNome()); //Verifica se o contato já existe
-        if ( it == contatos.end()) {
-            contatos[contato.getNome()] = contato;
+        if ( it == contatos.end()) { //Se não existir
+            contatos[contato.getNome()] = contato; //Adiciona o contato
         } else{
-        it -> second.addFone(contato.getFones()[0]); //Caso contrário adiciona
+        it -> second.addFone(contato.getFones()[0]); 
         }
     } 
 
-    void removerFone(string nome, int index) {
-        auto it = contatos.find(nome); //Verifica se o contato existe
-        if (it != contatos.end()) {
-            it->second.removerFone(index); //Caso exista remove o contato
-        } else { 
-            cout << "Contato selecionado nao encontrado" << endl;
-        }
+    void removerFone(string nome) {
+        auto it = contatos.find(nome); //Verifica se o contato existe pelo nome
         if (it != contatos.end()) {
             contatos.erase(it); //Remove o contato
         }else {
@@ -149,11 +143,23 @@ public:
         }
     }
 
-    void search(string n){
-        for (auto cont : contatos){
-            size_t found = cont.second.getNome().find(n); //Percorre a agenda procurando o contato
-            if (found != string::npos) { 
-                cout << cont.second << endl;
+
+    void removerFone(string nome, int indice){
+        auto it = contatos.find(nome); //Verifica se o contato existe pelo nome
+        if (it != contatos.end()) {
+            it -> second.removerFone(indice); //Remove o fone pelo indice
+        }else {
+             cout << "Contato nao encontrado" << endl;
+        }
+    }
+
+    void search(string num){
+        for (auto contato : contatos){
+            size_t found = contato.second.getNome().find(num); //Percorre a agenda procurando o contato
+            if (found != string::npos) {  //Se encontrar o contato
+                cout << contato.second << endl; //Imprime o contato
+            } else {
+                cout << "Contato nao encontrado" << endl;
             }
         }
         cout << "\n";
@@ -162,7 +168,7 @@ public:
     friend ostream& operator<<(ostream& os, Agenda& agenda){
         os << "\n";
         for (auto cont : agenda.contatos){
-            os << cont.second << endl;
+            os << cont.second << "\n";
         }
         return os;
     }
@@ -170,10 +176,9 @@ public:
 
 int main() {  
 
-    cout << "AGENDA" << endl;
+    
     Agenda agenda;
 
-    cout << "Adicionar contatos" << endl;
     Contato Joao{"Joao"};
     Contato Fred{"Fred"};
     Contato Maria{"Maria"};
@@ -183,19 +188,19 @@ int main() {
     Fred.addFone(Fone{"vivo", "335"});
     Maria.addFone(Fone{"tim", "1765"});
 
-    cout << "Lista" << endl;
+    cout << "Lista" << " ";
     agenda.addContato(Joao);
     agenda.addContato(Fred);
     agenda.addContato(Maria);
 
     cout << agenda << endl;
 
-    cout << "Remover contato" << endl;
-    agenda.removerFone("Maria", 1);
-    agenda.removerFone("Fred", 1);
+    cout << "Remover fone" << "\n";
+    agenda.removerFone("Maria");
 
-    cout << "Procurar contatos" << endl;
+    cout << "Procurar contatos" << "\n";
     agenda.search("335");
-    cout << agenda << endl;
+    
+    cout << agenda << " ";
 
 }
