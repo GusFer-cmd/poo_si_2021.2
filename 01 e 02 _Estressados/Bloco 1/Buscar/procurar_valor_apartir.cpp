@@ -10,11 +10,11 @@ int i, num, pos = 0, encontrado = 0, contador = 0; //Declaração de variáveis
     cout << "Digite um numero que voce deseja procurar: " << endl;
     cin >> num;
 
-    for(i = 0; i < v.size(); i++){ //Laço que percorre o vetor
-        if(num == v[ i ]){ //Condição que verifica se o numero digitado é igual ao numero da posição do vetor
+    for(i = 0; i < v.size(); i++){ //Laço
+        if(num == v[ i ]){ //verifica se o numero digitado é igual ao numero da posição do vetor
             encontrado = 1; //Se o numero digitado for igual ao numero da posição do vetor, o valor de encontrado recebe 1
             pos = i + 1; //A posição do numero digitado é igual ao numero da posição do vetor mais 1 (Só pra ficar bonito)
-            contador++; //Incrementa a quantidade de vezes que o numero digitado aparece na fila
+            contador++; //Incrementa
         }
     }
 
@@ -22,8 +22,8 @@ int i, num, pos = 0, encontrado = 0, contador = 0; //Declaração de variáveis
         cout << "Numero " << num << " aparece " << contador << "x no vetor." << " E sua proxima posicao " << pos << endl;
     } else {
         cout << "Numero digitado nao existe " << endl;
-        return -1;
     }
+    return -1;
 }
 
 int main(){

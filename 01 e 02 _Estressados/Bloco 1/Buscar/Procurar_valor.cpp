@@ -21,8 +21,8 @@ int i, num, pos = 0, encontrado = 0; //Declaração de variáveis
         cout << "Numero existente aparece na posicao " << pos << endl;
     } else {
         cout << "Numero nao existente" << endl;
-        return -1;
     }
+    return -1;
 }
 
 int main(){

@@ -5,8 +5,7 @@ using namespace std;
 
 bool existe(vector<int> v){ //Booleando existir 
 
-int i, num; //Declaração de variáveis
-bool encontrado = 0;
+int i, num, encontrado = 0; //Declaração de variáveis
 
     cout << "Digite um valor que voce deseja verificar se existe na fila: " << endl;
     cin >> num;
