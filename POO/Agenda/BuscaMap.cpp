@@ -183,6 +183,7 @@ int main() {
     Contato Fred{"Fred"};
     Contato Maria{"Maria"};
 
+    cout << "Adicionar contatos" << endl;
     Joao.addFone(Fone{"tim", "1640"});
     Fred.addFone(Fone{"tim", "788"});
     Fred.addFone(Fone{"vivo", "335"});
@@ -195,12 +196,12 @@ int main() {
 
     cout << agenda << endl;
 
-    cout << "Remover fone" << "\n";
     agenda.removerFone("Maria");
 
-    cout << "Procurar contatos" << "\n";
+    cout << "Procurar contatos" << " ";
+    
     agenda.search("335");
     
-    cout << agenda << " ";
+    cout << agenda << endl;
 
 }

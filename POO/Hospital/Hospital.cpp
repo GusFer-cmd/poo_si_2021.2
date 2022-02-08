@@ -279,7 +279,7 @@ int main(){
                 continue;
             }
 
-            if (cmd == "end"){
+            if (cmd == "exit"){
                 exit(1);
             } else  {
                 cout << "fali: unknown command" << endl;

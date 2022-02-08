@@ -92,14 +92,15 @@ public:
 };
 
 int main () {
-
-     Sala cinema;
-        while(true) {
-        string line;
-        getline(cin, line);
-        stringstream ss(line);
-        string cmd;
-        ss >> cmd;
+ Sala cinema;
+        
+    while(true) {
+    string line;
+    getline(cin, line);
+    stringstream ss(line);
+    string cmd;
+    ss >> cmd;
+    
         if (cmd == "exit") {
             break;
         } else if (cmd == "show") {
@@ -116,7 +117,4 @@ int main () {
             cinema.cancelar(id);
         }
     }
-
-
-
 }
