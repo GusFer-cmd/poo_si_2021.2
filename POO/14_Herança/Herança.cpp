@@ -85,7 +85,7 @@ public:
     }
 
     friend ostream& operator<<(ostream& os, const Batalha& batalha){
-        const Pet* pet = &batalha;
+        const Pet* pet = &batalha; //Ver o pet como batalha (Cria referencia)
         os << *pet << ":" << batalha.vidas;
         return os; 
     }
