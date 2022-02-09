@@ -44,8 +44,8 @@ public:
     Sala(){}; //Construtor de inicialização da sala
 
     bool validarCliente(string id){ //Verifica se o cliente existe
-        for (auto it = this->cadeiras.begin(); it != this->cadeiras.end(); ++it){
-            if (it->second->getId() == id){
+        for (auto it = this->cadeiras.begin(); it != this->cadeiras.end(); ++it){ //Percorre o mapa
+            if (it->second->getId() == id){ //Compara
                 return true;
             }
         }
@@ -83,7 +83,7 @@ public:
     friend ostream& operator<<(ostream& os, const Sala& sala){
         os << "Cadeiras: " << endl;
         for (auto it = sala.cadeiras.begin(); it != sala.cadeiras.end(); ++it){
-            os << it->first << ": " << *(it->second) << endl;
+            os << it->first << ": " << *(it->second) << endl; 
             os << " | ";
         }
         os << "]";
