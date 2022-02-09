@@ -153,9 +153,9 @@ public:
         }
     }
 
-    void search(string num){
+    void search(string numero){
         for (auto contato : contatos){
-            size_t found = contato.second.getNome().find(num); //Percorre a agenda procurando o contato
+            size_t found = contato.second.getNome().find(numero); //Percorre a agenda procurando o contato
             if (found != string::npos) {  //Se encontrar o contato
                 cout << contato.second << endl; //Imprime o contato
             } else {
