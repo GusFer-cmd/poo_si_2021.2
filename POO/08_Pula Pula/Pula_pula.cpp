@@ -6,10 +6,11 @@
 using namespace std;
 
 class Kid {
-    public:
+private:
     int idade;
     string nome;
-    
+
+public:   
     Kid(string nome = "", int idade = 0) :
         nome{nome}, idade{idade} {    
     }
