@@ -123,6 +123,9 @@ public:
         }
         if (indice >= this->bico.size() <= 10) {
             cout << "Grafite muito curto\n";
+        } else {
+            this->bico[indice]->Folha(); 
+            cout << "Grafite escrito\n";
         }
     }
 
