@@ -85,7 +85,7 @@ class ContaCorrente : public Conta{
 public:
     ContaCorrente(string clienteId, int id) : Conta(clienteId, id) { //Construtor da Conta Corrente
         this->type = "CC"; //Tipo da conta
-    };
+    }
 
     virtual void monthupdate(){
         this->saldo -= 20; //Desconta 20 reais de taxa mensal
