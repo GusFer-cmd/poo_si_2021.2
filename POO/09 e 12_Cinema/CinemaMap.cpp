@@ -93,7 +93,7 @@ public:
 
 int main () {
  Sala cinema;
-        
+
     while(true) {
     string line;
     getline(cin, line);

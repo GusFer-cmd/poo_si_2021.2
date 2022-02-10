@@ -10,7 +10,7 @@ class TweetException : public std::exception { //exception permite reagir a circ
 private:
     string message;
 public:
-    TweetException( const string& message) : message(message) {} 
+    TweetException(const string& message) : message(message) {} 
 
     const char* what() const throw() {
         return message.c_str();
