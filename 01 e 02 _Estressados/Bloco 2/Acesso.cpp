@@ -69,10 +69,18 @@ void embaralhar(vector<int> v) { //Função que recebe como parametro um vetor
 int main(){
 
     vector<int> v(6); //Declaração de vetor
-    cout << "Digite o elemento do vetor: ";
     for(int i = 0; i < v.size(); i++){ //Laço
+        cout << "Digite um valor: " << endl;
         cin >> v[ i ]; //Recebe os valores
     }
 
+    int num = sorteio(v); //Chama a função sorteio
+    cout << "Numero sorteado: " << num << endl;
 
+    reverter_inplace(v); //Chama a função reverter_inplace
+    ordenar(v); //Chama a função ordenar
+    inverte_com_copia(v); //Chama a função inverte_com_copia
+    embaralhar(v); //Chama a função embaralhar
+    
+    return 0;
 }
