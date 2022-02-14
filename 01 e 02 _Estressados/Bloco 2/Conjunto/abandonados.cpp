@@ -18,10 +18,10 @@ bool found = false; //Booleano para verificar se o valor já foi adicionado.
             }
         }
     
-        if (found == true){ //Se o booleano for true
-            found = false; //Zera o booleano
-        } else{
+        if (found == false){ //Se o booleano for false
             vJ.push_back(v[i]); //Adiciona o valor no vetor J
+        } else {
+            found = false; //Zera o booleano
         }
     }
     return vI;
