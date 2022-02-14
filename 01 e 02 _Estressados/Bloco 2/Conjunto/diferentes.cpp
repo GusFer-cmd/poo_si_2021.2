@@ -10,7 +10,7 @@ vector<int> diferentes(const vector<int>&v){ //Função que recebe como parametr
     bool found = false; //Booleano
     for (int i = 0; i < v.size(); i++){ //Laço "i"
         for (int j = 0; j < rep.size(); j++){ //Laço "j"
-            if (v[ i ] == rep[j] || v[ i ] * -1 == rep[j]){ 
+            if (v[ i ] == rep[ j ] || v[ i ] * -1 == rep[ j ]){  //(*-1 é o modulo)
                 found = true; //Se encontrar o valor, o booleano é true
                 break;
             }
